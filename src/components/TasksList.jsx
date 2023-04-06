@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskItem from '../fragments/TaskItem';
+import TaskFragment from '../fragments/TaskFragment';
 import useTasks from '../hooks/useTasks';
 
 const TasksList = () => {
@@ -8,7 +8,7 @@ const TasksList = () => {
   return (
     <div className="tasks-list">
       {tasks.map(task => (
-        <TaskItem key={task.id} task={task} />
+        <TaskFragment key={task.id} task={task} />
       ))}
     </div>
   );
