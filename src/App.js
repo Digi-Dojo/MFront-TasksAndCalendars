@@ -6,9 +6,9 @@ import CalendarEventList from './components/CalendarEventList';
 import TaskForm from './components/TaskForm';
 import TasksList from './components/TasksList';
 import CalendarFragment from './fragments/CalendarFragment';
-import TaskFragment from './fragments/TaskFragment';
+import { TaskFragment } from './fragments/TaskFragment';
 import useCalendarEvents from './hooks/useCalendarEvents';
-import useTasks from './hooks/useTasks';
+import { useTasks } from './hooks/useTasks';
 
 function App() {
   // Initialize state for calendar events and tasks using custom hooks
@@ -27,7 +27,7 @@ function App() {
         </div>
         <div className="tasks">
           <Title secondary>Tasks</Title>
-          <TaskFragment tasks={tasks} />
+          {/* <TaskFragment tasks={tasks} /> */}
           <TaskForm setTasks={setTasks} />
           <TasksList tasks={tasks} setTasks={setTasks} />
         </div>

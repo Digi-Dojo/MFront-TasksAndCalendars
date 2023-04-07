@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useTasks = () => {
+export const useTasks = () => {
   const [tasks, setTasks] = useState([]);
 
   // Fetch tasks from your API or any other source

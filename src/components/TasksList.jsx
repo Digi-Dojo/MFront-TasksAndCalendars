@@ -8,7 +8,7 @@ const TasksList = () => {
   return (
     <div className="tasks-list">
       {tasks.map(task => (
-        <TaskFragment key={task.id} task={task} />
+        task && <TaskFragment key={task.id} task={task} />
       ))}
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TaskFragment = ({ task }) => {
+export const TaskFragment = ({ task }) => {
   const [completed, setCompleted] = useState(false);
 
   const toggleCompleted = () => {
