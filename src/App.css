@@ -61,14 +61,20 @@
 }
 
 .complete-btn {
-  border-radius: 12px;
+  height: 35px;
+  border-radius: 50%;
+  border-color: green;
+  background-color: transparent;
+}
+.complete-btn.complete{
+  background-color: rgba(57, 255, 20, 0.2);
+
 }
 
 .gg-check {
   box-sizing: border-box;
   position: relative;
   display: block;
-  transform: scale(var(--ggs,1));
   width: 22px;
   height: 22px;
   border: 2px solid transparent;
@@ -86,5 +92,10 @@
   border-width: 0 2px 2px 0;
   border-style: solid;
   transform-origin: bottom left;
-  transform: rotate(45deg)
+  transform: rotate(45deg);
+  border-color: #008000;
+}
+
+.complete .gg-check::after {
+  border-color: #000000;
 }

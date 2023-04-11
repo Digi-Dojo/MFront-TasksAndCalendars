@@ -24,7 +24,7 @@ export const TaskFragment = ({ task }) => {
             multiline
             rows={4}
         />
-      <button className="btn complete-btn" onClick={toggleCompleted} name={completed ? 'Mark Incomplete' : 'Mark Complete'}>
+      <button className={'btn complete-btn ' + (completed ? 'complete' : 'incomplete')} onClick={toggleCompleted} title={completed ? 'Mark Incomplete' : 'Mark Complete'}>
           <i className="gg-check"></i>
       </button>
     </div>
