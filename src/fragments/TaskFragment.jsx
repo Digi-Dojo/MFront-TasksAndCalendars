@@ -13,8 +13,14 @@ export const TaskFragment = ({ task }) => {
     };
 
   return (
-    <div key={task.id} className="task-item">
-      <h3>{task.title}</h3>
+    <div key={task.id} className={"task-item"+(completed ? ' complete' : '')}>
+      <div className="card-header">
+        <button className={'btn complete-btn ' + (completed ? 'complete' : 'incomplete')} onClick={toggleCompleted}
+                title={completed ? 'Mark Incomplete' : 'Mark Complete'}>
+            <i className="gg-check"></i>
+        </button>
+        <h3 className="card-title">{task.title}</h3>
+      </div>
       <p>User: {task.user}</p>
       <p>Place: {task.place}</p>
         <TextField
@@ -24,9 +30,7 @@ export const TaskFragment = ({ task }) => {
             multiline
             rows={4}
         />
-      <button onClick={toggleCompleted}>
-        {completed ? 'Mark Incomplete' : 'Mark Complete'}
-      </button>
+
     </div>
   );
 };
