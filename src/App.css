@@ -69,51 +69,14 @@
     background-color: #000000;
     color: #ffffff;
     width: 100%;
-    max-width: 668px;
+    max-width: 22rem;
     font-size: 1.5em; /* Increase this value to make the calendar text bigger */
-}
-
-.calendar .react-calendar__navigation button,
-.calendar .react-calendar__navigation button:hover {
-    color: #ffffff;
-    background: none;
-    border: 1px solid #ffffff;
+    margin-bottom: 20px;
 }
 
 .calendar .react-calendar__navigation button:enabled:hover,
 .calendar .react-calendar__navigation button:enabled:focus {
     background: #292732;
-}
-
-.calendar .react-calendar__tile.react-calendar__month-view__days__day:not(.react-calendar__month-view__days__day--neighboringMonth):not(.react-calendar__month-view__days__day--weekend) {
-    color: #ffffff;
-}
-
-.calendar .react-calendar__tile--now {
-    background: #181818;
-    border: #292732 2px dashed;
-}
-
-.calendar .react-calendar__tile--now:enabled:hover,
-.calendar .react-calendar__tile--now:enabled:focus,
-.calendar .react-calendar__tile:enabled:hover,
-.calendar .react-calendar__tile:enabled:focus{
-    background: #292732;
-    border: #201e29 5px solid;
-}
-
-.calendar .react-calendar__tile.react-calendar__month-view__days__day,
-.calendar .react-calendar__tile.react-calendar__month-view__days__day {
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-}
-.calendar .react-calendar__tile--active,
-.calendar .react-calendar__tile--active:hover,
-.calendar .react-calendar__tile--active:enabled:hover,
-.calendar .react-calendar__tile--active:enabled:focus {
-    background: #1f4722;
-    border: #2e5b32 4px solid;
 }
 
 .tasks {
@@ -203,16 +166,6 @@
     box-shadow: 0 0 10px #008000;
 }
 
-.MuiTextField-root .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root,
-.MuiTextField-root .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused,
-.MuiTextField-root .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root ,
-.MuiTextField-root .css-1d3z3hw-MuiOutlinedInput-notchedOutline,
-.MuiTextField-root .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root,
-.MuiTextField-root .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
-.MuiTextField-root .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: #ffffff;
-    color: #ffffff;
-}
 .add-event-btn {
     background-color: #2e5b32;
     border: 1px solid #ffffff;

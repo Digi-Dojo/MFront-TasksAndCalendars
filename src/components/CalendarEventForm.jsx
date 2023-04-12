@@ -25,21 +25,36 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
   };
 
   return (
-    <Box>
+    <Box
+        component="div"
+        sx={{
+            '& .MuiInputBase-input': { color: '#ffffff' },
+            '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
+            '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
+            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
+            '& .MuiInputLabel-outlined': { color: '#ffffff' },
+            }}
+    >
       <TextField
         label="Event Title"
         value={eventTitle}
         onChange={(e) => setEventTitle(e.target.value)}
+        sx={{ marginRight: '10px' }}
       />
       <TextField
         label="Event Description"
         value={eventDescription}
         onChange={(e) => setEventDescription(e.target.value)}
+        sx={{ marginRight: '10px'}}
+
       />
       <TextField
         label="Event Tag"
         value={eventTag}
         onChange={(e) => setEventTag(e.target.value)}
+        sx={{ marginRight: '10px', color: '#ffffff' }}
+
+
       />
       <button className="add-event-btn" type="submit" onClick={addEvent}> Add Event </button>
     </Box>

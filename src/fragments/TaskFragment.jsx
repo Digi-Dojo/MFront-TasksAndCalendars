@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 export const TaskFragment = ({ task }) => {
-  const [completed, setCompleted] = useState(false);  
+  const [completed, setCompleted] = useState(false);
+  const [description, setDescription] = useState(task.description);
   const toggleCompleted = () => {
     setCompleted(!completed);
   };
@@ -16,9 +17,9 @@ export const TaskFragment = ({ task }) => {
         </button>
         <h3 className="card-title">{task.title}</h3>
       </div>
-      <p>User: {task.user}</p>
-      <p>Place: {task.place}</p>
-      <p>Description: {task.description}</p>
+        {(task.user) ? <p>User: {task.user}</p> : ""}
+        {(task.place) ? <p>Place: {task.place}</p> : ""}
+        <p className="item-description">Description: {description}</p>
     </div>
   );
 };
