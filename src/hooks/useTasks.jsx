@@ -7,8 +7,8 @@ export const useTasks = () => {
   const fetchTasks = async () => {
     // Replace this with your actual API call
     const fetchedTasks = [
-      { id: 1, title: 'Task 1', user: 'User 1', place: 'Place 1' },
-      { id: 2, title: 'Task 2', user: 'User 2', place: 'Place 2' },
+      { id: 1, title: 'Task 1', user: 'User 1', place: 'Place 1' , description: 'Description 1'},
+      { id: 2, title: 'Task 2', user: 'User 2', place: 'Place 2' , description: 'Description 2'},
     ];
     setTasks(fetchedTasks);
   };

@@ -26,7 +26,6 @@ export const CalendarFragment = () => {
 
   return (
     <div>
-      <Title secondary>Calendar</Title>
       <h3>Select Start and End Dates</h3>
       <Calendar
         selectRange={true}
