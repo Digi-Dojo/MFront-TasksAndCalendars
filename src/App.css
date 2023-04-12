@@ -58,7 +58,7 @@
     align-items: center;
     flex: 1;
     background-color: #201e29;
-    max-width: 55%;
+    max-width: 60%;
     margin-left: 10%;
     border-radius: 24px 24px 0 0;
     border-right: #000000 1px solid;
@@ -68,6 +68,9 @@
 .calendar .react-calendar {
     background-color: #000000;
     color: #ffffff;
+    width: 100%;
+    max-width: 668px;
+    font-size: 1.5em; /* Increase this value to make the calendar text bigger */
 }
 
 .calendar .react-calendar__navigation button,
@@ -102,8 +105,8 @@
 .calendar .react-calendar__tile.react-calendar__month-view__days__day,
 .calendar .react-calendar__tile.react-calendar__month-view__days__day {
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
 .calendar .react-calendar__tile--active,
 .calendar .react-calendar__tile--active:hover,
@@ -210,3 +213,20 @@
     border-color: #ffffff;
     color: #ffffff;
 }
+.add-event-btn {
+    background-color: #2e5b32;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1.2em;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.add-event-btn:hover {
+    background-color: #1f4722;
+}
+
+
+

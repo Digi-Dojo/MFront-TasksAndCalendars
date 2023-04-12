@@ -1,36 +1,48 @@
 import React, { useState } from 'react';
+import { TextField, Box } from '@mui/material';
 
-const CalendarEventForm = ({ setCalendarEvents }) => {
-  const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
+const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
+  const [eventTitle, setEventTitle] = useState('');
+  const [eventDescription, setEventDescription] = useState('');
+  const [eventTag, setEventTag] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newEvent = {
-      title,
-      date,
-      id: Date.now(),
-    };
-    setCalendarEvents((prevEvents) => [...prevEvents, newEvent]);
-    setTitle('');
-    setDate('');
+  const addEvent = () => {
+    if (eventTitle.trim() !== '' && eventDescription.trim() !== '') {
+      setCalendarEvents((prevEvents) => [
+        ...prevEvents,
+        {
+          title: eventTitle,
+          description: eventDescription,
+          startDate: startDate,
+          endDate: endDate,
+          tag: eventTag,
+        },
+      ]);
+      setEventTitle('');
+      setEventDescription('');
+      setEventTag('');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Event title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+    <Box>
+      <TextField
+        label="Event Title"
+        value={eventTitle}
+        onChange={(e) => setEventTitle(e.target.value)}
       />
-      <input
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
+      <TextField
+        label="Event Description"
+        value={eventDescription}
+        onChange={(e) => setEventDescription(e.target.value)}
       />
-      <button type="submit">Add Event</button>
-    </form>
+      <TextField
+        label="Event Tag"
+        value={eventTag}
+        onChange={(e) => setEventTag(e.target.value)}
+      />
+      <button className="add-event-btn" type="submit" onClick={addEvent}> Add Event </button>
+    </Box>
   );
 };
 

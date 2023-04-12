@@ -1,47 +1,61 @@
-import React from 'react';
-import { Box } from "@mui/system";
+import React, { useState } from 'react';
+import { Box } from '@mui/material';
 import dayjs from 'dayjs';
-import { Title } from "../components/Title";
-import { useTasks } from "../hooks/useTasks";
+import { Title } from '../components/Title';
+import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import {pickersLayoutClasses} from "@mui/x-date-pickers";
+import CalendarEventForm from '../components/CalendarEventForm';
 
 export const CalendarFragment = () => {
-    const [tasks] = useTasks();
+  const [selectedStartDate, setSelectedStartDate] = useState(dayjs().toDate());
+  const [selectedEndDate, setSelectedEndDate] = useState(dayjs().toDate());
+  const [events, setEvents] = useState([]);
 
-    const maxHeight = {
-        height: '75vh',
-        overflow: 'auto'
-    };
+  const handleStartDateChange = (date) => {
+    setSelectedStartDate(date);
+  };
 
-    return (
-        <div>
-            <Title secondary>Calendar</Title>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <StaticDateRangePicker
-                    defaultValue={[dayjs('2022-04-17'), dayjs('2022-04-21')]}
-                    sx={{
-                        [`.${pickersLayoutClasses.contentWrapper}`]: {
-                            alignItems: 'center',
-                        },
-                    }}
-                />
-            </LocalizationProvider>
+  const handleEndDateChange = (date) => {
+    setSelectedEndDate(date);
+  };
 
-            <Box sx={maxHeight}>
-                {tasks.map((task) => (
-                    <div key={task.id}>
-                        <h3>{task.title}</h3>
-                        <p>User: {task.user}</p>
-                        <p>Place: {task.place}</p>
-                    </div>
-                ))}
-            </Box>
-        </div>
-    );
+  const maxHeight = {
+    height: '75vh',
+    overflow: 'auto',
+  };
+
+  return (
+    <div>
+      <Title secondary>Calendar</Title>
+      <h3>Select Start and End Dates</h3>
+      <Calendar
+        selectRange={true}
+        onChange={(dateRange) => {
+          handleStartDateChange(dateRange[0]);
+          handleEndDateChange(dateRange[1]);
+        }}
+        value={[selectedStartDate, selectedEndDate]}
+      />
+      <CalendarEventForm
+        setCalendarEvents={setEvents}
+        startDate={selectedStartDate}
+        endDate={selectedEndDate}
+      />
+      <Box sx={maxHeight}>
+        <h2>Events</h2>
+        {events.map((event, index) => (
+          <div key={index}>
+            <h3>{event.title}</h3>
+            <p>Description: {event.description}</p>
+            <p>Start Date: {dayjs(event.startDate).format('MMMM D, YYYY')}</p>
+            <p>End Date: {dayjs(event.endDate).format('MMMM D, YYYY')}</p>
+            <p>Tag: {event.tag}</p>
+          </div>
+        ))}
+    </Box>
+    </div>
+);
 };
 
 export default CalendarFragment;
+          
