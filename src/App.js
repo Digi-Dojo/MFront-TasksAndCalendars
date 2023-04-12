@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { Title } from './components/Title';
-import CalendarEventForm from './components/CalendarEventForm';
 import CalendarEventList from './components/CalendarEventList';
 import TasksList from './components/TasksList';
 import CalendarFragment from './fragments/CalendarFragment';
@@ -20,7 +19,6 @@ function App() {
         <div className="calendar">
           <Title secondary>Calendar</Title>
           <CalendarFragment calendarEvents={calendarEvents} />
-          <CalendarEventForm setCalendarEvents={setCalendarEvents} />
           <CalendarEventList calendarEvents={calendarEvents} setCalendarEvents={setCalendarEvents} />
         </div>
         <div className="tasks">

@@ -27,7 +27,7 @@ export const CalendarFragment = () => {
     <div>
       <h3>Select Start and End Dates</h3>
         <Box
-            component="form"
+            component="div"
             sx={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -127,9 +127,9 @@ export const CalendarFragment = () => {
             <p>Tag: {event.tag}</p>
           </div>
         ))}
-    </Box>
+      </Box>
     </div>
-);
+  );
 };
 
 export default CalendarFragment;

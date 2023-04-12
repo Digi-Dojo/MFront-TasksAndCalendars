@@ -26,7 +26,7 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
 
   return (
     <Box
-        component="form"
+        component="div"
         sx={{
             '& .MuiInputBase-input': { color: '#ffffff' },
             '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
