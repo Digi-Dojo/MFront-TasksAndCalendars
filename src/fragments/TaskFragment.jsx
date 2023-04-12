@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { TextField } from '@mui/material';
 
 export const TaskFragment = ({ task }) => {
   const [completed, setCompleted] = useState(false);
@@ -21,16 +20,9 @@ export const TaskFragment = ({ task }) => {
         </button>
         <h3 className="card-title">{task.title}</h3>
       </div>
-      <p>User: {task.user}</p>
-      <p>Place: {task.place}</p>
-        <TextField
-            label="Description"
-            value={description}
-            onChange={handleDescriptionChange}
-            multiline
-            rows={4}
-        />
-
+        {(task.user) ? <p>User: {task.user}</p> : ""}
+        {(task.place) ? <p>Place: {task.place}</p> : ""}
+        <p className="item-description">Description: {description}</p>
     </div>
   );
 };
