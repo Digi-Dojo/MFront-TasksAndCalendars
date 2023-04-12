@@ -7,9 +7,6 @@ export const TaskFragment = ({ task }) => {
     setCompleted(!completed);
   };
 
-    const handleDescriptionChange = (event) => {
-        setDescription(event.target.value);
-    };
 
   return (
     <div key={task.id} className={"task-item"+(completed ? ' complete' : '')}>

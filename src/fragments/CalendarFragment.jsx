@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import dayjs from 'dayjs';
-import { Title } from '../components/Title';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import CalendarEventForm from '../components/CalendarEventForm';
@@ -26,7 +25,6 @@ export const CalendarFragment = () => {
 
   return (
     <div>
-      <Title secondary>Calendar</Title>
       <h3>Select Start and End Dates</h3>
         <Box
             component="form"
