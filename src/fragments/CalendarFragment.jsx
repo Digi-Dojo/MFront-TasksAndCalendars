@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import dayjs from 'dayjs';
-import { Title } from '../components/Title';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import CalendarEventForm from '../components/CalendarEventForm';

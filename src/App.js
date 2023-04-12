@@ -3,7 +3,6 @@ import './App.css';
 import { Title } from './components/Title';
 import CalendarEventForm from './components/CalendarEventForm';
 import CalendarEventList from './components/CalendarEventList';
-import TaskForm from './components/TaskForm';
 import TasksList from './components/TasksList';
 import CalendarFragment from './fragments/CalendarFragment';
 import useCalendarEvents from './hooks/useCalendarEvents';
@@ -26,8 +25,6 @@ function App() {
         </div>
         <div className="tasks">
           <Title secondary>Tasks</Title>
-          {/* <TaskFragment tasks={tasks} /> */}
-          <TaskForm setTasks={setTasks} />
           <TasksList tasks={tasks} setTasks={setTasks} />
         </div>
       </div>

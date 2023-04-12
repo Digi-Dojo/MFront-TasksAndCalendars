@@ -10,7 +10,7 @@ const TaskCreateForm = ({
   setPlace,
   setDescription,
   onSubmit,
-  buttonText = 'Submit',
+  buttonText,
 }) => {
   return (
     <form onSubmit={onSubmit}>

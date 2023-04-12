@@ -35,6 +35,8 @@ const TasksList = () => {
           onSubmit={handleTaskCreate}
           buttonText="Create Task"
         />
+        <br></br>
+        <br></br>
       </div>
       <div className="tasks-list">
         {tasks.map((task) => (
