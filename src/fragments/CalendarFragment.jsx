@@ -123,7 +123,7 @@ export const CalendarFragment = () => {
       <Box sx={maxHeight}>
         <h2>Events</h2>
         {calendarEvents.map((event, index) => (
-            <div class='event-item' Skey={index}>
+            <div class='event-item' key={index}>
               <div className='card-header'>
                 <h3 className="card-title-event">{event.title}</h3>
               </div>
