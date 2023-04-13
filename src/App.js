@@ -7,7 +7,7 @@ import CalendarFragment from './fragments/CalendarFragment';
 import useCalendarEvents from './hooks/useCalendarEvents';
 import { useTasks } from './hooks/useTasks';
 
-function App() {
+function App() { 
   // Initialize state for calendar events and tasks using custom hooks
   const [calendarEvents, setCalendarEvents] = useCalendarEvents();
   const [tasks, setTasks] = useTasks();
