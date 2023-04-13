@@ -4,11 +4,14 @@ import dayjs from 'dayjs';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import CalendarEventForm from '../components/CalendarEventForm';
+import CalendarEventList from '../components/CalendarEventList';
+import useCalendarEvents from '../hooks/useCalendarEvents';
 
 export const CalendarFragment = () => {
   const [selectedStartDate, setSelectedStartDate] = useState(dayjs().toDate());
   const [selectedEndDate, setSelectedEndDate] = useState(dayjs().toDate());
   const [events, setEvents] = useState([]);
+  const [calendarEvents, setCalendarEvents] = useCalendarEvents();
 
   const handleStartDateChange = (date) => {
     setSelectedStartDate(date);
@@ -116,11 +119,12 @@ export const CalendarFragment = () => {
             startDate={selectedStartDate}
             endDate={selectedEndDate}
           />
+          <br></br>
       <Box sx={maxHeight}>
         <h2>Events</h2>
-        {events.map((event, index) => (
-          <div key={index}>
-            <h3>{event.title}</h3>
+        {calendarEvents.map((event, index) => (
+          <div class='event-item' Skey={index}>
+            <h3 >{event.title}</h3>
             <p>Description: {event.description}</p>
             <p>Start Date: {dayjs(event.startDate).format('MMMM D, YYYY')}</p>
             <p>End Date: {dayjs(event.endDate).format('MMMM D, YYYY')}</p>

@@ -19,7 +19,7 @@ function App() {
         <div className="calendar">
           <Title secondary>Calendar</Title>
           <CalendarFragment calendarEvents={calendarEvents} />
-          <CalendarEventList calendarEvents={calendarEvents} setCalendarEvents={setCalendarEvents} />
+          {/* <CalendarEventList calendarEvents={calendarEvents} setCalendarEvents={setCalendarEvents} /> */}
         </div>
         <div className="tasks">
           <Title secondary>Tasks</Title>

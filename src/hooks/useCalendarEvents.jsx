@@ -7,8 +7,8 @@ const useCalendarEvents = () => {
   const fetchCalendarEvents = async () => {
     // Replace this with your actual API call
     const fetchedCalendarEvents = [
-      { id: 1, title: 'Event 1', date: '2023-04-06' },
-      { id: 2, title: 'Event 2', date: '2023-04-07' },
+      { id: 1, title: 'Event 1', startDate: '2023-04-06', endDate: '2023-04-16'},
+      { id: 2, title: 'Event 2', startDate: '2023-04-07', endDate: '2023-04-08' },
     ];
     setCalendarEvents(fetchedCalendarEvents);
   };
