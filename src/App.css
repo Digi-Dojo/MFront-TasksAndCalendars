@@ -213,9 +213,9 @@
   }
   
   div.scrollMenu-Tasks{
-    width: 323px;
-    height: 350px;
-    background-color: #8c8c8c;
+    width: 290px;
+    height: 840px;
+    background-color: #292732;
     overflow-y: scroll;
     overflow-x: hidden;
     white-space: nowrap;

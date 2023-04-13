@@ -38,7 +38,7 @@ const TasksList = () => {
         <br></br>
         <br></br>
       </div>
-      <div className="tasks-list">
+      <div className="scrollMenu-Tasks">
         {tasks.map((task) => (
           task && <TaskFragment key={task.id} task={task} />
         ))}
