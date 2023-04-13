@@ -124,7 +124,7 @@ export const CalendarFragment = () => {
         <h2>Events</h2>
         {calendarEvents.map((event, index) => (
           <div class='event-item' Skey={index}>
-            <h3 >{event.title}</h3>
+            <h3>{event.title}</h3>
             <p>Description: {event.description}</p>
             <p>Start Date: {dayjs(event.startDate).format('MMMM D, YYYY')}</p>
             <p>End Date: {dayjs(event.endDate).format('MMMM D, YYYY')}</p>
