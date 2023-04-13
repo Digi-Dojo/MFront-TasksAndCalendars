@@ -123,13 +123,16 @@ export const CalendarFragment = () => {
       <Box sx={maxHeight}>
         <h2>Events</h2>
         {calendarEvents.map((event, index) => (
-          <div class='event-item' Skey={index}>
-            <h3>{event.title}</h3>
-            <p>Description: {event.description}</p>
-            <p>Start Date: {dayjs(event.startDate).format('MMMM D, YYYY')}</p>
-            <p>End Date: {dayjs(event.endDate).format('MMMM D, YYYY')}</p>
-            <p>Tag: {event.tag}</p>
+            <div class='event-item' Skey={index}>
+              <div className='card-header'>
+                <h3 className="card-title-event">{event.title}</h3>
+              </div>
+              <p>Description: {event.description}</p>
+              <p>Start Date: {dayjs(event.startDate).format('MMMM D, YYYY')}</p>
+              <p>End Date: {dayjs(event.endDate).format('MMMM D, YYYY')}</p>
+              {(event.tag) ? <p>Tag: {event.tag}</p> : ""}
           </div>
+          
         ))}
       </Box>
     </div>

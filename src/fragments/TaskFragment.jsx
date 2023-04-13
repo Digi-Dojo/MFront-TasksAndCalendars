@@ -15,7 +15,7 @@ export const TaskFragment = ({ task }) => {
                 title={completed ? 'Mark Incomplete' : 'Mark Complete'}>
             <i className="gg-check"></i>
         </button>
-        <h3 className="card-title">{task.title}</h3>
+        <h3 className="card-title-task">{task.title}</h3>
       </div>
         {(task.user) ? <p>User: {task.user}</p> : ""}
         {(task.place) ? <p>Place: {task.place}</p> : ""}
