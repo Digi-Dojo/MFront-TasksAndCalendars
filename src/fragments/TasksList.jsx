@@ -1,6 +1,6 @@
 import React from 'react';
 import TaskCreateForm from './TaskCreateForm';
-import TaskFragment from '../fragments/TaskFragment';
+import TaskFragment from './TaskFragment';
 import useTasks from '../hooks/useTasks';
 
 const TasksList = () => {
