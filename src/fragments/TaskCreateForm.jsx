@@ -1,55 +1,77 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Box, TextField, Button} from "@mui/material";
 
-const TaskCreateForm = ({
-  title,
-  user,
-  place,
-  description,
-  setTitle,
-  setUser,
-  setPlace,
-  setDescription,
-  onSubmit,
-  buttonText,
-}) => {
+const TaskCreateForm = ({ setTasks }) => {
+    const [title, setTitle] = useState('');
+    const [user, setUser] = useState('');
+    const [place, setPlace] = useState('');
+    const [description, setDescription ] = useState('');
+    const addEvent = () => {
+        if (title.trim() !== '' && description.trim() !== '') {
+            setTasks((prevEvents) => [
+                ...prevEvents,
+                {
+                    title: title,
+                    user: user,
+                    place: place,
+                    description: description,
+                },
+            ]);
+            setTitle('');
+            setUser('');
+            setPlace('');
+            setDescription('');
+        }
+    };
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        id="taskInput"
-        type="text"
-        placeholder="Insert Task Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <p></p>
-      <input
-        id="taskInput"
-        type="text"
-        placeholder="User"
-        value={user}
-        onChange={(e) => setUser(e.target.value)}
-      />
-      <br></br>
-      <input
-        id="taskInput"
-        type="text"
-        placeholder="Place"
-        value={place}
-        onChange={(e) => setPlace(e.target.value)}
-      />
-      <br></br>
-      <input
-        id="taskInput"
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <p></p>
-      <button className="addTaskButton" type="submit">
-        {buttonText}
-      </button>
-    </form>
+      <Box
+          component="div"
+          sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              '& .MuiInputBase-input': { color: '#ffffff' },
+              '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
+              '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
+              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
+              '& .MuiInputLabel-outlined': { color: '#ffffff' },
+          }}
+      >
+          <TextField
+              label="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              sx={{ marginBottom: '15px' }}
+              id="taskInput"
+          />
+          <TextField
+              label="User"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+              sx={{ marginBottom: '10px'}}
+              id="taskInput"
+          />
+          <TextField
+              label="Place"
+              value={place}
+              onChange={(e) => setPlace(e.target.value)}
+              sx={{ marginBottom: '10px' }}
+              id="taskInput"
+          />
+          <TextField
+              label="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              sx={{ marginBottom: '10px' }}
+              id="taskInput"
+          />
+          <Button
+              className="add-event-btn"
+              type={"submit"}
+              onClick={addEvent}
+          >
+              add Task
+          </Button>
+      </Box>
   );
 };
 
