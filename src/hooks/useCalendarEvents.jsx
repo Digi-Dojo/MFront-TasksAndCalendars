@@ -5,12 +5,14 @@ const useCalendarEvents = () => {
 
   // Fetch calendar events from your API or any other source
   const fetchCalendarEvents = async () => {
-    // Replace this with your actual API call
-    const fetchedCalendarEvents = [
-      { id: 1, title: 'Event 1', startDate: '2023-04-06', endDate: '2023-04-16', description: "Trip to Milan", tag:"Bring documents"},
-      { id: 2, title: 'Event 2', startDate: '2023-04-07', endDate: '2023-04-08', description: "Business meeting" },
-    ];
-    setCalendarEvents(fetchedCalendarEvents);
+    try {
+      const response = await fetch('http://127.0.0.1:5432//postgres');
+      const fetchedCalendarEvents = await response.json();
+
+      setCalendarEvents(fetchedCalendarEvents);
+    } catch (error) {
+      console.error('Error fetching calendar events:', error);
+    }
   };
 
   useEffect(() => {
