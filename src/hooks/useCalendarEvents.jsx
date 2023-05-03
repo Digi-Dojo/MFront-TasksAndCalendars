@@ -3,10 +3,9 @@ import { useState, useEffect } from 'react';
 const useCalendarEvents = () => {
   const [calendarEvents, setCalendarEvents] = useState([]);
 
-  // Fetch calendar events from your API or any other source
   const fetchCalendarEvents = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5432//postgres');
+      const response = await fetch('http://127.0.0.1:8080/api/calendar-events'); 
       const fetchedCalendarEvents = await response.json();
 
       setCalendarEvents(fetchedCalendarEvents);
