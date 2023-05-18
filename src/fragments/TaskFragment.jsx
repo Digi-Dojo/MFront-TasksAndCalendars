@@ -14,7 +14,8 @@ export const TaskFragment = ({task}) => {
     overflow: 'auto',
   };
 
-  return (null
+  return (
+    null
     // <div key={task.id} className={"task-item"+(completed ? ' complete' : '')}>
     //   <div className="card-header">
     //     <button className={'btn complete-btn ' + (completed ? 'complete' : 'incomplete')} onClick={toggleCompleted}
