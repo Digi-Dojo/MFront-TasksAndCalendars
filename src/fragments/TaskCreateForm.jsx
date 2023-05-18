@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Box, TextField, Button} from "@mui/material";
 
-const TaskCreateForm = ({ setTasks }) => {
+const TaskCreateForm = ({setTasks}) => {
     const [title, setTitle] = useState('');
     const [user, setUser] = useState('');
     const [place, setPlace] = useState('');
@@ -64,13 +64,11 @@ const TaskCreateForm = ({ setTasks }) => {
               sx={{ marginBottom: '10px' }}
               id="taskInput"
           />
-          <Button
+          <button
               className="add-event-btn"
               type={"submit"}
-              onClick={addEvent}
-          >
-              add Task
-          </Button>
+              onClick={addEvent}>Add Task
+          </button>
       </Box>
   );
 };

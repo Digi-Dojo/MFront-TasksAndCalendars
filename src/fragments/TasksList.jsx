@@ -1,48 +1,30 @@
 import React from 'react';
-import TaskCreateForm from './TaskCreateForm';
-import TaskFragment from './TaskFragment';
 import useTasks from '../hooks/useTasks';
 
 const TasksList = () => {
-  const [tasks, setTasks] = useTasks();
+  const tasks = useTasks();
 
-  const handleTaskCreate = (event) => {
-    event.preventDefault();
+  // const handleTaskCreate = (event) => {
+  //   event.preventDefault();
 
-    const newTask = {
-      id: tasks.length + 1,
-      title: event.target.title.value,
-      user: event.target.user.value,
-      place: event.target.place.value,
-      description: event.target.description.value,
-    };
+  //   const newTask = {
+  //     id: tasks.length + 1,
+  //     title: event.target.title.value,
+  //     user: event.target.user.value,
+  //     place: event.target.place.value,
+  //     description: event.target.description.value,
+  //   };
 
-    setTasks((prevTasks) => [...prevTasks, newTask]);
-  };
+  //   tasks((prevTasks) => [...prevTasks, newTask]);
+  // };
 
   return (
-    <div>
-      <div className="task-create-form">
-        <TaskCreateForm
-          title=""
-          user=""
-          place=""
-          description=""
-          setTitle={() => {}}
-          setUser={() => {}}
-          setPlace={() => {}}
-          setDescription={() => {}}
-          onSubmit={handleTaskCreate}
-          buttonText="Create Task"
-        />
-        <br></br>
-        <br></br>
-      </div>
-      <div className="scrollMenu-Tasks">
-        {tasks.map((task) => (
-          task && <TaskFragment key={task.id} task={task} />
-        ))}
-      </div>
+    <div className="scrollMenu-Tasks">
+      {tasks.map(task => (
+        <li key={task.id} className='TaskListItem'>{task.title}<p></p>
+            {task.user} - {task.place} <p></p> {task.description}
+        </li>
+      ))}
     </div>
   );
 };

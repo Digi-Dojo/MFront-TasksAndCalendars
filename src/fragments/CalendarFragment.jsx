@@ -109,31 +109,31 @@ export const CalendarFragment = () => {
                 },
             }}
         >
-            <Calendar
-                selectRange={true}
-                onChange={(dateRange) => {
-                    handleStartDateChange(dateRange[0]);
-                    handleEndDateChange(dateRange[1]);
-                }}
-                value={[selectedStartDate, selectedEndDate]}
-            />
+        <Calendar
+            selectRange={true}
+            onChange={(dateRange) => {
+                handleStartDateChange(dateRange[0]);
+                handleEndDateChange(dateRange[1]);
+            }}
+            value={[selectedStartDate, selectedEndDate]}
+        />
 
-        </Box>
+    </Box>
       <CalendarEventForm
         setCalendarEvents={setEvents}
         startDate={selectedStartDate}
         endDate={selectedEndDate}
-      />
-      <Box sx={maxHeight}>
+    />
+    <Box sx={maxHeight}>
         <h2>Events</h2>
         {events.map((event, index) => (
-          <div key={index}>
+            <div key={index}>
             <h3>{event.title}</h3>
             <p>Description: {event.description}</p>
             <p>Start Date: {dayjs(event.startDate).format('MMMM D, YYYY')}</p>
             <p>End Date: {dayjs(event.endDate).format('MMMM D, YYYY')}</p>
             <p>Tag: {event.tag}</p>
-          </div>
+            </div>
         ))}
     </Box>
     </div>
