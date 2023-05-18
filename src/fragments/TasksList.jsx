@@ -1,9 +1,20 @@
-import React from 'react';
 import useTasks from '../hooks/useTasks';
+import React, { useState } from 'react';
+import TaskCreateForm from './TaskCreateForm';
+import { Box } from '@mui/material';
 
 const TasksList = () => {
-  const tasks = useTasks();
 
+  const [completed, setCompleted] = useState(false);
+  const [tasks, setTaskList] = useTasks([]);
+  const toggleCompleted = () => {
+    setCompleted(!completed);
+  };
+
+  const maxHeight = {
+    height: '75vh',
+    overflow: 'auto',
+  };
   // const handleTaskCreate = (event) => {
   //   event.preventDefault();
 
@@ -19,13 +30,23 @@ const TasksList = () => {
   // };
 
   return (
-    <div className="scrollMenu-Tasks">
-      {tasks.map(task => (
-        <li key={task.id} className='TaskListItem'>{task.title}<p></p>
-            {task.user} - {task.place} <p></p> {task.description}
-        </li>
-      ))}
-    </div>
+    <div>
+      <TaskCreateForm
+        setTasks={setTaskList}
+      />
+      <Box sx={maxHeight}>
+        <h2>Tasks</h2>
+        {tasks.map((task, index) => (
+          <div key={index}>
+            <h3>{task.title}</h3>
+            <p>Description: {task.description}</p>
+            <p>User: {task.user}</p>
+            <p>Place: {task.place}</p>
+            <br></br><br></br>
+          </div>
+        ))}
+      </Box>
+    </div >
   );
 };
 

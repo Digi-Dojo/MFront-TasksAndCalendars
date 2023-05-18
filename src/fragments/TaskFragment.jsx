@@ -14,7 +14,7 @@ export const TaskFragment = ({task}) => {
     overflow: 'auto',
   };
 
-  return (
+  return (null
     // <div key={task.id} className={"task-item"+(completed ? ' complete' : '')}>
     //   <div className="card-header">
     //     <button className={'btn complete-btn ' + (completed ? 'complete' : 'incomplete')} onClick={toggleCompleted}
@@ -26,22 +26,7 @@ export const TaskFragment = ({task}) => {
     //     {(task.user) ? <p>User: {task.user}</p> : ""}
     //     {(task.place) ? <p>Place: {task.place}</p> : ""}
     //     <p className="item-description">Description: {task.description}</p>
-<div>
-        <TaskCreateForm
-          setTasks={setTaskList}
-        />        
-        <Box sx={maxHeight}>
-          <h2>Tasks</h2>
-          {tasks.map((task, index) => (
-            <div key={index}>
-              <h3>{task.title}</h3>
-              <p>Description: {task.description}</p>
-              <p>User: {task.user}</p>
-              <p>Place: {task.place}</p>
-            </div>
-          ))}
-      </Box>
-      </div>
+
   );
 };
 
