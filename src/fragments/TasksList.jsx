@@ -1,12 +1,11 @@
 import useTasks from '../hooks/useTasks';
 import React, { useState } from 'react';
-import TaskCreateForm from './TaskCreateForm';
 import { Box } from '@mui/material';
 
 const TasksList = () => {
 
   const [completed, setCompleted] = useState(false);
-  const [tasks, setTaskList] = useTasks([]);
+  const [tasks] = useTasks([]);
   const toggleCompleted = () => {
     setCompleted(!completed);
   };
@@ -31,9 +30,6 @@ const TasksList = () => {
 
   return (
     <div>
-      <TaskCreateForm
-        setTasks={setTaskList}
-      />
       <Box sx={maxHeight}>
         <h2>Tasks</h2>
         {tasks.map((task, index) => (
