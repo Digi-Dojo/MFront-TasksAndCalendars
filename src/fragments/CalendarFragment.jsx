@@ -117,24 +117,6 @@ export const CalendarFragment = () => {
             }}
             value={[selectedStartDate, selectedEndDate]}
         />
-
-    </Box>
-      <CalendarEventForm
-        setCalendarEvents={setEvents}
-        startDate={selectedStartDate}
-        endDate={selectedEndDate}
-    />
-    <Box sx={maxHeight}>
-        <h2>Events</h2>
-        {events.map((event, index) => (
-            <div key={index}>
-            <h3>{event.title}</h3>
-            <p>Description: {event.description}</p>
-            <p>Start Date: {dayjs(event.startDate).format('MMMM D, YYYY')}</p>
-            <p>End Date: {dayjs(event.endDate).format('MMMM D, YYYY')}</p>
-            <p>Tag: {event.tag}</p>
-            </div>
-        ))}
     </Box>
     </div>
 );
