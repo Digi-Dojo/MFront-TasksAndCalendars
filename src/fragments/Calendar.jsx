@@ -8,7 +8,6 @@ import CalendarEventForm from './CalendarEventForm';
 export const CalendarFragment = () => {
   const [selectedStartDate, setSelectedStartDate] = useState(dayjs().toDate());
   const [selectedEndDate, setSelectedEndDate] = useState(dayjs().toDate());
-  const [events, setEvents] = useState([]);
 
   const handleStartDateChange = (date) => {
     setSelectedStartDate(date);

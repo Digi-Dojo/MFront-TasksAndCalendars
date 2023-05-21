@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { TextField, Box } from '@mui/material';
 
-const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
+
+ /*
+    This class should just represend the form component.
+    Once the addEvent button gets pressed, the event should appear in the list provided by the CalendarEventList component.
+    */
+   
+const CalendarEventForm = ({ setEvents, startDate, endDate }) => {
     const [eventTitle, setEventTitle] = useState('');
     const [eventDescription, setEventDescription] = useState('');
     const [eventTag, setEventTag] = useState('');
 
     const addEvent = () => {
         if (eventTitle.trim() !== '' && eventDescription.trim() !== '') {
-            setCalendarEvents((prevEvents) => [
+            setEvents((prevEvents) => [
                 ...prevEvents,
                 {
                     title: eventTitle,
@@ -57,5 +63,6 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
         </Box>
     );
 };
+
 
 export default CalendarEventForm;

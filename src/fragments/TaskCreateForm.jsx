@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import {Box, TextField} from "@mui/material";
+import {Box, TextField, Button} from "@mui/material";
 
-const TaskCreateForm = ({setTasks}) => {
+const TaskCreateForm = ({ setTasks }) => {
     const [title, setTitle] = useState('');
     const [user, setUser] = useState('');
     const [place, setPlace] = useState('');
     const [description, setDescription ] = useState('');
-    const addEvent = () => {
+    
+    const addTask = () => {
         if (title.trim() !== '' && description.trim() !== '') {
             setTasks((prevEvents) => [
                 ...prevEvents,
@@ -67,7 +68,7 @@ const TaskCreateForm = ({setTasks}) => {
           <button
               className="add-event-btn"
               type={"submit"}
-              onClick={addEvent}>Add Task
+              onClick={addTask}>Add Task
           </button>
       </Box>
   );
