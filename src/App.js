@@ -1,23 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import dayjs from 'dayjs';
 import './App.css';
 import { Title } from './components/Title';
 import CalendarEventList from './fragments/CalendarEventList';
 import TasksList from './fragments/TasksList';
-import Calendar from './fragments/Calendar';
+import CalendarFragment from './fragments/Calendar';
 import useCalendarEvents from './hooks/useCalendarEvents';
 import { useTasks } from './hooks/useTasks';
 import TaskCreateForm from './fragments/TaskCreateForm';
 import CalendarEventForm from './fragments/CalendarEventForm';
-import { useEffect } from 'react';
-
 
 function App() {
-  // Initialize state for calendar events and tasks using custom hooks
   const [calendarEvents, setCalendarEvents] = useCalendarEvents();
   const [tasks, setTaskList] = useTasks();
-  useEffect(() => {
-    console.log("Tasks state updated in App component: ", tasks);
-  }, [tasks]);
+  const [selectedStartDate, setSelectedStartDate] = useState(dayjs().toDate());
+  const [selectedEndDate, setSelectedEndDate] = useState(dayjs().toDate());
 
   return (
     <div className="App">
@@ -25,8 +22,8 @@ function App() {
       <div className="container">
         <div className="calendar">
           <Title secondary>Calendar</Title>
-          <Calendar calendarEvents={calendarEvents} />
-          <CalendarEventForm setCalendarEvents={setCalendarEvents} />
+          <CalendarFragment calendarEvents={calendarEvents} setSelectedStartDate={setSelectedStartDate} setSelectedEndDate={setSelectedEndDate} />
+          <CalendarEventForm setCalendarEvents={setCalendarEvents} startDate={selectedStartDate} endDate={selectedEndDate} />
           <CalendarEventList calendarEvents={calendarEvents} />
         </div>
         <div className="tasks">

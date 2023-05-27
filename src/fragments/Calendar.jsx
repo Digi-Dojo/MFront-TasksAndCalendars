@@ -3,21 +3,20 @@ import { Box } from '@mui/material';
 import dayjs from 'dayjs';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-// import { maxHeight } from '@mui/system';
-// import CalendarEventForm from './CalendarEventForm';
 
-export const CalendarFragment = () => {
-    const [selectedStartDate, setSelectedStartDate] = useState(dayjs().toDate());
-    const [selectedEndDate, setSelectedEndDate] = useState(dayjs().toDate());
+export const CalendarFragment = ({ setSelectedStartDate, setSelectedEndDate }) => {
+    const [selectedStartDate, setSelectedStartDateLocal] = useState(dayjs().toDate());
+    const [selectedEndDate, setSelectedEndDateLocal] = useState(dayjs().toDate());
 
     const handleStartDateChange = (date) => {
+        setSelectedStartDateLocal(date);
         setSelectedStartDate(date);
     };
 
     const handleEndDateChange = (date) => {
+        setSelectedEndDateLocal(date);
         setSelectedEndDate(date);
     };
-
 
     return (
         <div>
@@ -105,7 +104,7 @@ export const CalendarFragment = () => {
                     },
                 }}
             >
-                <Calendar
+                 <Calendar
                     selectRange={true}
                     onChange={(dateRange) => {
                         handleStartDateChange(dateRange[0]);

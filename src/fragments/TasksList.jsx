@@ -1,34 +1,40 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
 const TasksList = ({ tasks }) => {
-    const [completed, setCompleted] = useState(false);
 
-    const toggleCompleted = () => {
-        setCompleted(!completed);
-    };
+  const [completedTasks, setCompletedTasks] = useState([]);
 
-    const maxHeight = {
-        height: '75vh',
-        overflow: 'auto',
-    };
+  const toggleCompleted = (taskId) => {
+    if (completedTasks.includes(taskId)) {
+      setCompletedTasks(completedTasks.filter(task => task !== taskId));
+    } else {
+      setCompletedTasks([...completedTasks, taskId]);
+    }
+  };
 
-    return (
-        <div>
-            <Box sx={maxHeight}>
-                <h2>Tasks</h2>
-                {tasks.map((task, index) => (
-                    <div key={index}>
-                        <h3>{task.title}</h3>
-                        <p>Description: {task.description}</p>
-                        <p>User: {task.user}</p>
-                        <p>Place: {task.place}</p>
-                        <br></br><br></br>
-                    </div>
-                ))}
-            </Box>
-        </div >
-    );
+  const maxHeight = {
+    height: '75vh',
+    overflow: 'auto',
+  };
+
+  return (
+    <div>
+      <Box sx={maxHeight}>
+        <h2>Tasks</h2>
+        {tasks.map((task, index) => (
+          <div key={index}>
+            <h3 style={{ textDecoration: completedTasks.includes(index) ? "line-through" : "" }}>{task.title}</h3>
+            <p>Description: {task.description}</p>
+            <p>User: {task.user}</p>
+            <p>Place: {task.place}</p>
+            <button onClick={() => toggleCompleted(index)}>{completedTasks.includes(index) ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
+            <br></br><br></br>
+          </div>
+        ))}
+      </Box>
+    </div >
+  );
 };
 
 export default TasksList;
