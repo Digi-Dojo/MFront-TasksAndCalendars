@@ -5,7 +5,7 @@ const useCalendarEvents = () => {
 
   const fetchCalendarEvents = async () => {
     try {
-      const response = await fetch('http://localhost:8080/task-calendar/api/calendar-events/getAll'); 
+      const response = await fetch('http://localhost:8080/task-calendar/api/calendar-events/getAll');
       const fetchedCalendarEvents = await response.json();
 
       setCalendarEvents(fetchedCalendarEvents);
@@ -20,5 +20,6 @@ const useCalendarEvents = () => {
 
   return [calendarEvents, setCalendarEvents];
 };
+
 
 export default useCalendarEvents;

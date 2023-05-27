@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import dayjs from 'dayjs';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import CalendarEventForm from './CalendarEventForm';
+// import CalendarEventForm from './CalendarEventForm';
 
 export const CalendarFragment = () => {
   const [selectedStartDate, setSelectedStartDate] = useState(dayjs().toDate());
@@ -17,10 +17,10 @@ export const CalendarFragment = () => {
     setSelectedEndDate(date);
   };
 
-  const maxHeight = {
-    height: '75vh',
-    overflow: 'auto',
-  };
+//   const maxHeight = {
+//     height: '75vh',
+//     overflow: 'auto',
+//   };
 
   return (
     <div>

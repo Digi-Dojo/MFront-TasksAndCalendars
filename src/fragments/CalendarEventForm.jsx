@@ -7,14 +7,14 @@ import { TextField, Box } from '@mui/material';
     Once the addEvent button gets pressed, the event should appear in the list provided by the CalendarEventList component.
     */
    
-const CalendarEventForm = ({ setEvents, startDate, endDate }) => {
+const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
     const [eventTitle, setEventTitle] = useState('');
     const [eventDescription, setEventDescription] = useState('');
     const [eventTag, setEventTag] = useState('');
 
     const addEvent = () => {
         if (eventTitle.trim() !== '' && eventDescription.trim() !== '') {
-            setEvents((prevEvents) => [
+            setCalendarEvents((prevEvents) => [
                 ...prevEvents,
                 {
                     title: eventTitle,

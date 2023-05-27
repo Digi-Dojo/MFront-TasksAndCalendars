@@ -1,34 +1,21 @@
 import useTasks from '../hooks/useTasks';
-import React, { useState } from 'react';
+import React from 'react';
 import { Box } from '@mui/material';
 
 const TasksList = () => {
 
-  const [completed, setCompleted] = useState(false);
-  const [tasks] = useTasks([]);
+  const [tasks, setTasks] = useTasks([]);
 
-
-  const toggleCompleted = () => {
-    setCompleted(!completed);
+  const toggleCompleted = (index) => {
+    const newTasks = [...tasks]; // Clone the current state
+    newTasks[index].completed = !newTasks[index].completed; // Toggle the 'completed' property of the task
+    setTasks(newTasks); // Update the state
   };
 
   const maxHeight = {
     height: '75vh',
     overflow: 'auto',
   };
-  // const handleTaskCreate = (event) => {
-  //   event.preventDefault();
-
-  //   const newTask = {
-  //     id: tasks.length + 1,
-  //     title: event.target.title.value,
-  //     user: event.target.user.value,
-  //     place: event.target.place.value,
-  //     description: event.target.description.value,
-  //   };
-
-  //   tasks((prevTasks) => [...prevTasks, newTask]);
-  // };
 
   return (
     <div>
@@ -40,7 +27,12 @@ const TasksList = () => {
             <p>Description: {task.description}</p>
             <p>User: {task.user}</p>
             <p>Place: {task.place}</p>
-            <br></br><br></br>
+            <input
+              type="checkbox"
+              checked={task.completed || false}
+              onChange={() => toggleCompleted(index)}
+            />
+            <br/><br/>
           </div>
         ))}
       </Box>

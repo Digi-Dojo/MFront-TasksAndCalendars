@@ -22,12 +22,12 @@ function App() {
         <div className="calendar">
           <Title secondary>Calendar</Title>
           <Calendar calendarEvents={calendarEvents} />
-          <CalendarEventForm setEvents={setCalendarEvents}></CalendarEventForm>
-          <CalendarEventList calendarEvents={calendarEvents} setCalendarEvents={setCalendarEvents} />
+          <CalendarEventForm setCalendarEvents={setCalendarEvents} />
+          <CalendarEventList calendarEvents={calendarEvents} />
         </div>
         <div className="tasks">
           <Title secondary>Tasks</Title>
-          <TaskCreateForm setTasks={setTaskList}/>
+          <TaskCreateForm setTasks={setTaskList} />
           <TasksList tasks={tasks} setTasks={setTaskList} />
         </div>
       </div>
