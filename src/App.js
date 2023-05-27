@@ -8,12 +8,16 @@ import useCalendarEvents from './hooks/useCalendarEvents';
 import { useTasks } from './hooks/useTasks';
 import TaskCreateForm from './fragments/TaskCreateForm';
 import CalendarEventForm from './fragments/CalendarEventForm';
+import { useEffect } from 'react';
 
 
 function App() {
   // Initialize state for calendar events and tasks using custom hooks
   const [calendarEvents, setCalendarEvents] = useCalendarEvents();
   const [tasks, setTaskList] = useTasks();
+  useEffect(() => {
+    console.log("Tasks state updated in App component: ", tasks);
+  }, [tasks]);
 
   return (
     <div className="App">
