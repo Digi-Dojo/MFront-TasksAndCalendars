@@ -65,11 +65,11 @@ const TaskCreateForm = ({ setTasks }) => {
               sx={{ marginBottom: '10px' }}
               id="taskInput"
           />
-          <Button
+          <button
               className="add-event-btn"
               type={"submit"}
               onClick={addTask}>Add Task
-          </Button>
+          </button>
       </Box>
   );
 };
