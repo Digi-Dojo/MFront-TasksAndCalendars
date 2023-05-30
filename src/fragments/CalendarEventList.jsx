@@ -15,7 +15,7 @@ const CalendarEventList = ({calendarEvents}) => {
   return (
     <div>
       <Box sx={maxHeight}>
-        <h2>Events</h2>
+        <h2>Events: {calendarEvents.length}</h2>
         {calendarEvents.map((event, index) => (
           <div className="scrollMenu-Events" key={index}>
             <h3>{event.title}</h3>
