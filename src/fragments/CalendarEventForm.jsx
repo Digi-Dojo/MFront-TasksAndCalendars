@@ -1,59 +1,141 @@
 import React, { useState } from 'react';
 import { TextField, Box } from '@mui/material';
+import axios from 'axios';
+import ICalendarLink from 'react-icalendar-link';
 
 const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
     const [eventTitle, setEventTitle] = useState('');
     const [eventDescription, setEventDescription] = useState('');
     const [eventTag, setEventTag] = useState('');
 
-    const addEvent = () => {
-        if (eventTitle.trim() !== '' && eventDescription.trim() !== '') {
-            setCalendarEvents((prevEvents) => [
-                ...prevEvents,
-                {
-                    title: eventTitle,
-                    description: eventDescription,
-                    startDate: startDate,
-                    endDate: endDate,
-                    tag: eventTag,
+    const syncEventWithTrello = (event) => {
+        const cardData = {
+            name: event.title,
+            desc: event.description,
+            due: event.endTime,
+            idList: 9, // Replace with the appropriate Trello list ID
+        };
+// old key  : c70932b508c303c193d6c398dadca876
+// old token : see backend
+// new key: ssa_token
+        const url = `https://api.trello.com/1/cards?key=ssa_token&token=ATATT3xFfGF09ZoTBtr7fj1yYlUmYIjj9E8iXnuOkzqrj3hyiuBILTUnhjZPBw5y7voMrRO4R4UaAnQuKsI9V_XufrfAxoZY_1bTRDBddUl82QyFlRik6MCIwtsE52o2XM9Up9iEqdVqVaJXPICi6_L-iMy3lZr8Kwdpo0Opvg0YNlAvFCtNQ1U=36BBB91A`;
+        axios
+            .post(url, cardData)
+            .then((response) => {
+                const cardId = response.data.id;
+
+                // Upload .ics file to Trello card
+                const icsFile = generateICSFile(event);
+                uploadICSFileToTrello(cardId, icsFile);
+            })
+            .catch((error) => {
+                // Handle errors
+                console.error('Error creating card:', error);
+            });
+    };
+
+    const generateICSFile = (event) => {
+        const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Your Company//Your App//EN
+BEGIN:VEVENT
+UID:${Math.random().toString(36).substr(2, 9)}
+DTSTAMP:${new Date().toISOString().replace(/[-:.]/g, '')}
+DTSTART:${event.startTime.toISOString().replace(/[-:.]/g, '')}
+DTEND:${event.endTime.toISOString().replace(/[-:.]/g, '')}
+SUMMARY:${event.title}
+DESCRIPTION:${event.description}
+END:VEVENT
+END:VCALENDAR`;
+
+        return new Blob([icsContent], {type: 'text/calendar'});
+    };
+
+    const uploadICSFileToTrello = (cardId, icsFile) => {
+        const attachmentUrl = `https://api.trello.com/1/cards/${cardId}/attachments?key=ssa_token&token=ATATT3xFfGF09ZoTBtr7fj1yYlUmYIjj9E8iXnuOkzqrj3hyiuBILTUnhjZPBw5y7voMrRO4R4UaAnQuKsI9V_XufrfAxoZY_1bTRDBddUl82QyFlRik6MCIwtsE52o2XM9Up9iEqdVqVaJXPICi6_L-iMy3lZr8Kwdpo0Opvg0YNlAvFCtNQ1U=36BBB91A`;
+
+        const formData = new FormData();
+        formData.append('file', icsFile, 'calendar_event.ics');
+
+        axios
+            .post(attachmentUrl, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
                 },
-            ]);
+            })
+            .then((response) => {
+                // Attachment uploaded successfully
+                console.log('Attachment uploaded:', response.data);
+            })
+            .catch((error) => {
+                // Handle errors
+                console.error('Error uploading attachment:', error);
+            });
+    };
+
+    const handleAddEvent = () => {
+        if (eventTitle.trim() !== '' && eventDescription.trim() !== '') {
+            const event = {
+                title: eventTitle,
+                description: eventDescription,
+                startTime: startDate,
+                endTime: endDate,
+                tag: eventTag,
+            };
+
+            setCalendarEvents((prevEvents) => [...prevEvents, event]);
             setEventTitle('');
             setEventDescription('');
             setEventTag('');
+            syncEventWithTrello(event);
         }
     };
-
     return (
         <Box
             component="div"
             sx={{
-                '& .MuiInputBase-input': { color: '#ffffff' },
-                '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '& .MuiInputLabel-outlined': { color: '#ffffff' },
+                '& .MuiInputBase-input': {color: '#ffffff'},
+                '& .MuiOutlinedInput-notchedOutline': {borderColor: '#ffffff'},
+                '&:hover .MuiOutlinedInput-notchedOutline': {borderColor: '#ffffff'},
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#ffffff',
+                },
+                '& .MuiInputLabel-outlined': {color: '#ffffff'},
             }}
         >
             <TextField
                 label="Event Title"
                 value={eventTitle}
                 onChange={(e) => setEventTitle(e.target.value)}
-                sx={{ marginRight: '10px' }}
+                sx={{marginRight: '10px'}}
             />
             <TextField
                 label="Event Description"
                 value={eventDescription}
                 onChange={(e) => setEventDescription(e.target.value)}
-                sx={{ marginRight: '10px'}}
+                sx={{marginRight: '10px'}}
             />
             <TextField
                 label="Event Tag"
                 value={eventTag}
                 onChange={(e) => setEventTag(e.target.value)}
-                sx={{ marginRight: '10px' }}
+                sx={{marginRight: '10px'}}
             />
-            <button className="add-event-btn" type="submit" onClick={addEvent}> Add Event </button>
+            <button className="add-event-btn" type="submit" onClick={handleAddEvent}>
+                Add Event
+            </button>
+            {eventTitle.trim() !== '' && eventDescription.trim() !== '' && (
+                <ICalendarLink
+                    event={{
+                        startTime: startDate,
+                        endTime: endDate,
+                        title: eventTitle,
+                        description: eventDescription,
+                    }}
+                >
+                    Add to Calendar
+                </ICalendarLink>
+            )}
         </Box>
     );
 };
