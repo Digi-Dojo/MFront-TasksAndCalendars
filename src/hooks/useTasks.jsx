@@ -8,7 +8,10 @@ export const useTasks = () => {
       const response = await fetch('http://localhost:8080/api/tasks/getAll'); 
       const fetchedTasks = await response.json();
 
+      console.log("Tasks: " + JSON.stringify(fetchedTasks));
+
       setTasks(fetchedTasks);
+
     } catch (error) {
       console.error('Error fetching tasks:', error);
     }

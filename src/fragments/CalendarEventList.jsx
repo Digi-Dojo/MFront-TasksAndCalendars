@@ -2,10 +2,8 @@ import React from 'react';
 import { Box } from '@mui/material';
 import dayjs from 'dayjs';
 import 'react-calendar/dist/Calendar.css';
-// import useCalendarEvents from '../hooks/useCalendarEvents';
 
 const CalendarEventList = ({calendarEvents}) => {
-  // const { calendarEvents } = useCalendarEvents();
 
   const maxHeight = {
     height: '75vh',

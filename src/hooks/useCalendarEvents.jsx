@@ -1,4 +1,3 @@
-// import { response } from 'express';
 import { useState, useEffect } from 'react';
 
 const useCalendarEvents = () => {
@@ -8,10 +7,11 @@ const useCalendarEvents = () => {
     try {
       const response = await fetch("http://localhost:8080/api/calendar-events/getAll");
       const fetchedCalendarEvents = await response.json();
+
       console.log("Events: " + JSON.stringify(fetchedCalendarEvents));
       
       setCalendarEvents(fetchedCalendarEvents);
-      
+
     } catch (error) {
       console.error('Error fetching calendar events:', error);
     }
@@ -23,6 +23,5 @@ const useCalendarEvents = () => {
 
   return [calendarEvents, setCalendarEvents];
 };
-
 
 export default useCalendarEvents;

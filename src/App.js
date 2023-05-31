@@ -4,7 +4,7 @@ import './App.css';
 import { Title } from './components/Title';
 import CalendarEventList from './fragments/CalendarEventList';
 import TasksList from './fragments/TasksList';
-import CalendarFragment from './fragments/Calendar';
+import Calendar from './fragments/Calendar';
 import useCalendarEvents from './hooks/useCalendarEvents';
 import { useTasks } from './hooks/useTasks';
 import TaskCreateForm from './fragments/TaskCreateForm';
@@ -22,7 +22,7 @@ function App() {
       <div className="container">
         <div className="calendar">
           <Title secondary>Calendar</Title>
-          <CalendarFragment calendarEvents={calendarEvents} setSelectedStartDate={setSelectedStartDate} setSelectedEndDate={setSelectedEndDate} />
+          <Calendar calendarEvents={calendarEvents} setSelectedStartDate={setSelectedStartDate} setSelectedEndDate={setSelectedEndDate} />
           <CalendarEventForm setCalendarEvents={setCalendarEvents} startDate={selectedStartDate} endDate={selectedEndDate} />
           <CalendarEventList calendarEvents={calendarEvents} />
         </div>
