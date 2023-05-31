@@ -7,9 +7,13 @@ const TaskCreateForm = ({ setTasks }) => {
     const [place, setPlace] = useState('');
     const [description, setDescription] = useState('');
 
+    /*
+    START FROM HERE!!!
+    https://developer.okta.com/blog/2022/06/17/simple-crud-react-and-spring-boot
+
+    This class needs to call the backend to submit new events
+    */
     const addTask = () => {
-        console.log("addTask is being called");
-        console.log(`Title: ${title}, Description: ${description}`);
         if (title.trim() !== '' && description.trim() !== '') {
             setTasks((prevEvents) => {
                 console.log("setTasks is being called");
