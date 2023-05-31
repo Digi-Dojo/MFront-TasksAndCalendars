@@ -8,11 +8,8 @@ const TaskCreateForm = ({ setTasks }) => {
     const [description, setDescription] = useState('');
 
     const addTask = () => {
-        console.log("addTask is being called");
-        console.log(`Title: ${title}, Description: ${description}`);
         if (title.trim() !== '' && description.trim() !== '') {
             setTasks((prevEvents) => {
-                console.log("setTasks is being called");
                 let newTasks = [
                     ...prevEvents,
                     {

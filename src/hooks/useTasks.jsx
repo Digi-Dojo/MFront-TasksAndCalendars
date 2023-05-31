@@ -17,9 +17,7 @@ export const useTasks = () => {
     }
   };
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+  useEffect(fetchTasks, []);
 
   return [tasks, setTasks];
 };

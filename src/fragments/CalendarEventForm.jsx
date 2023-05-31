@@ -28,7 +28,36 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
             setEventDescription('');
             setEventTag('');
         }
+        handleSubmit();
     };
+
+    const [formData, setFormData] = useState({
+        description: null,
+        startDate: startDate,
+        endDate: endDate,
+        tag: null
+    });
+
+
+    const handleSubmit = () =>{
+        setCalendarEvents(formData);
+    }
+
+    const handleDescriptionChange = (e) =>{
+        setFormData({
+            ...formData, 
+            description: e.target.value,
+        })
+        setEventDescription(e.target.value);
+    }
+
+    const handleTagChange = (e) =>{
+        setFormData({
+            ...formData, 
+            tag: e.target.value,
+        })
+        setEventTag(e.target.value);
+    }
 
     return (
         <Box
@@ -50,13 +79,15 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
             <TextField
                 label="Event Description"
                 value={eventDescription}
-                onChange={(e) => setEventDescription(e.target.value)}
+                numvalue={formData.description}
+                onChange={handleDescriptionChange}
                 sx={{ marginRight: '10px'}}
             />
             <TextField
                 label="Event Tag"
                 value={eventTag}
-                onChange={(e) => setEventTag(e.target.value)}
+                numvalue={formData.tag}
+                onChange={handleTagChange}
                 sx={{ marginRight: '10px' }}
             />
             <button className="add-event-btn" type="submit" onClick={addEvent}> Add Event </button>
