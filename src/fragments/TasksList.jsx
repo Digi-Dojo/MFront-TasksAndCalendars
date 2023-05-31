@@ -18,20 +18,24 @@ const TasksList = ({ tasks }) => {
     overflow: 'auto',
   };
 
+  var taskList = <br></br>;
+  if(tasks.length > 0){
+    taskList = tasks.map((task, index) => (
+    <div key={index}>
+      <h3 style={{ textDecoration: completedTasks.includes(index) ? "line-through" : "" }}>{task.title}</h3>
+      <p>Description: {task.description}</p>
+      <p>User: {task.user}</p>
+      <p>Place: {task.place}</p>
+      <button onClick={() => toggleCompleted(index)}>{completedTasks.includes(index) ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
+      <br></br><br></br>
+    </div>
+  ))}
+
   return (
     <div>
       <Box sx={maxHeight}>
         <h2>Tasks</h2>
-        {tasks.map((task, index) => (
-          <div key={index}>
-            <h3 style={{ textDecoration: completedTasks.includes(index) ? "line-through" : "" }}>{task.title}</h3>
-            <p>Description: {task.description}</p>
-            <p>User: {task.user}</p>
-            <p>Place: {task.place}</p>
-            <button onClick={() => toggleCompleted(index)}>{completedTasks.includes(index) ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
-            <br></br><br></br>
-          </div>
-        ))}
+        {taskList}
       </Box>
     </div >
   );
