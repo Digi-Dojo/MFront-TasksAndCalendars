@@ -24,9 +24,9 @@ const TasksList = ({ tasks }) => {
     <div key={index}>
       <h3 style={{ textDecoration: completedTasks.includes(index) ? "line-through" : "" }}>{task.title}</h3>
       <p>Description: {task.description}</p>
-      <p>User: {task.user}</p>
-      <p>Place: {task.place}</p>
-      <button onClick={() => toggleCompleted(index)}>{completedTasks.includes(index) ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
+      <p>{task.user === null ? '' : 'User: ' + task.user}</p>
+      <p>{task.place === null ? '' : 'Place: ' + task.user}</p>
+      <button onClick={() => toggleCompleted(index)}>{task.status === 'DONE' ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
       <br></br><br></br>
     </div>
   ))}

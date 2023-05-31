@@ -18,7 +18,7 @@ const CalendarEventList = ({calendarEvents}) => {
         <p>Description: {event.description}</p>
         <p>Start Date: {dayjs(event.startDate).format('MMMM D, YYYY')}</p>
         <p>End Date: {dayjs(event.endDate).format('MMMM D, YYYY')}</p>
-        <p>Tag: {event.tag}</p>
+        <p>{event.tag === undefined ? '' : 'Tag: ' + event.tag}</p>
         <br></br><br></br>
       </div>
   ))}
