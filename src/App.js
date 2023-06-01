@@ -29,7 +29,7 @@ function App() {
         <div className="tasks">
           <Title secondary>Tasks</Title>
           <TaskCreateForm setTasks={setTaskList} />
-          <TasksList tasks={tasks} setTasks={setTaskList} />
+          <TasksList tasks={tasks} />
         </div>
       </div>
     </div>

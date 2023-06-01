@@ -9,25 +9,67 @@ const TaskCreateForm = ({ setTasks }) => {
 
     const addTask = () => {
         if (title.trim() !== '' && description.trim() !== '') {
-            setTasks((prevEvents) => {
-                let newTasks = [
-                    ...prevEvents,
-                    {
-                        title: title,
-                        user: user,
-                        place: place,
-                        description: description,
-                    },
-                ];
+            setTasks((prevTasks) => [
+                ...prevTasks,
+                {
+                    title: title,
+                    user: user,
+                    place: place,
+                    description: description,
+                },
+            ]);
             setTitle('');
             setUser('');
             setPlace('');
             setDescription('');
-            console.log(newTasks);
-            return newTasks;
-        });
         }
+        handleSubmit();
     };
+
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        user: null,
+        place: null,
+        status: 0
+    });
+
+    const handleSubmit = () => {
+        setTasks(formData);
+    }
+    
+    const handleTitleChange = (e) =>{
+        setFormData({
+            ...formData, 
+            title: e.target.value,
+        })
+        setTitle(e.target.value);
+    }
+
+    const handleDescriptionChange = (e) =>{
+        setFormData({
+            ...formData, 
+            description: e.target.value,
+        })
+        setDescription(e.target.value);
+    }
+
+    const handleUserChange = (e) =>{
+        setFormData({
+            ...formData, 
+            user: e.target.value,
+        })
+        setUser(e.target.value);
+    }
+
+    const handlePlaceChange = (e) =>{
+        setFormData({
+            ...formData, 
+            place: e.target.value,
+        })
+        setPlace(e.target.value);
+    }
+
     
     return (
         <Box
@@ -45,28 +87,32 @@ const TaskCreateForm = ({ setTasks }) => {
             <TextField
                 label="Title"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                numvalue={formData.title}
+                onChange={handleTitleChange}
                 sx={{ marginBottom: '15px' }}
                 id="taskInput"
             />
             <TextField
                 label="User"
                 value={user}
-                onChange={(e) => setUser(e.target.value)}
+                numvalue={formData.user}
+                onChange={handleUserChange}
                 sx={{ marginBottom: '10px' }}
                 id="taskInput"
             />
             <TextField
                 label="Place"
                 value={place}
-                onChange={(e) => setPlace(e.target.value)}
+                numvalue={formData.place}
+                onChange={handlePlaceChange}
                 sx={{ marginBottom: '10px' }}
                 id="taskInput"
             />
             <TextField
                 label="Description"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                numvalue={formData.description}
+                onChange={handleDescriptionChange}
                 sx={{ marginBottom: '10px' }}
                 id="taskInput"
             />

@@ -19,11 +19,12 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
                 {
                     title: eventTitle,
                     description: eventDescription,
-                    startDate: startDate,
-                    endDate: endDate,
+                    sDate: startDate,
+                    eDate: endDate,
                     tag: eventTag,
                 },
             ]);
+            console.log("Event:\nTitle: " + formData.title + "\nDescription: " + formData.description)
             setEventTitle('');
             setEventDescription('');
             setEventTag('');
@@ -31,11 +32,15 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
         handleSubmit();
     };
 
+
     const [formData, setFormData] = useState({
-        description: null,
+        title: '',
+        description: '',
         startDate: startDate,
         endDate: endDate,
-        tag: null
+        user: '',
+        place: '',
+        tag: ''
     });
 
 
@@ -59,6 +64,14 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
         setEventTag(e.target.value);
     }
 
+    const handleTitleChange = (e) =>{
+        setFormData({
+            ...formData, 
+            title: e.target.value,
+        })
+        setEventTitle(e.target.value);
+    }
+
     return (
         <Box
             component="div"
@@ -73,7 +86,8 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
             <TextField
                 label="Event Title"
                 value={eventTitle}
-                onChange={(e) => setEventTitle(e.target.value)}
+                numvalue={formData.title}
+                onChange={handleTitleChange}
                 sx={{ marginRight: '10px' }}
             />
             <TextField
