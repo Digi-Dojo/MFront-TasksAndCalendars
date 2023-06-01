@@ -19,16 +19,58 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
                 {
                     title: eventTitle,
                     description: eventDescription,
-                    startDate: startDate,
-                    endDate: endDate,
+                    sDate: startDate,
+                    eDate: endDate,
                     tag: eventTag,
                 },
             ]);
+            console.log("Event:\nTitle: " + formData.title + "\nDescription: " + formData.description)
             setEventTitle('');
             setEventDescription('');
             setEventTag('');
         }
+        handleSubmit();
     };
+
+
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        startDate: startDate,
+        endDate: endDate,
+        user: '',
+        place: '',
+        tag: ''
+    });
+
+
+    const handleSubmit = () =>{
+        setCalendarEvents(formData);
+    }
+
+    const handleDescriptionChange = (e) =>{
+        setFormData({
+            ...formData, 
+            description: e.target.value,
+        })
+        setEventDescription(e.target.value);
+    }
+
+    const handleTagChange = (e) =>{
+        setFormData({
+            ...formData, 
+            tag: e.target.value,
+        })
+        setEventTag(e.target.value);
+    }
+
+    const handleTitleChange = (e) =>{
+        setFormData({
+            ...formData, 
+            title: e.target.value,
+        })
+        setEventTitle(e.target.value);
+    }
 
     return (
         <Box
@@ -44,19 +86,22 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
             <TextField
                 label="Event Title"
                 value={eventTitle}
-                onChange={(e) => setEventTitle(e.target.value)}
+                numvalue={formData.title}
+                onChange={handleTitleChange}
                 sx={{ marginRight: '10px' }}
             />
             <TextField
                 label="Event Description"
                 value={eventDescription}
-                onChange={(e) => setEventDescription(e.target.value)}
+                numvalue={formData.description}
+                onChange={handleDescriptionChange}
                 sx={{ marginRight: '10px'}}
             />
             <TextField
                 label="Event Tag"
                 value={eventTag}
-                onChange={(e) => setEventTag(e.target.value)}
+                numvalue={formData.tag}
+                onChange={handleTagChange}
                 sx={{ marginRight: '10px' }}
             />
             <button className="add-event-btn" type="submit" onClick={addEvent}> Add Event </button>
