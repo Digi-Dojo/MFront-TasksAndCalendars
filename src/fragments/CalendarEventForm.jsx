@@ -13,12 +13,12 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
             name: event.title,
             desc: event.description,
             due: event.endTime,
-            idList: 9, // Replace with the appropriate Trello list ID
+            idList: '6475e6c01fd186e2509f7f22', // Replace with the appropriate Trello list ID
         };
 // old key  : c70932b508c303c193d6c398dadca876
 // old token : see backend
 // new key: ssa_token
-        const url = `https://api.trello.com/1/cards?key=ssa_token&token=ATATT3xFfGF09ZoTBtr7fj1yYlUmYIjj9E8iXnuOkzqrj3hyiuBILTUnhjZPBw5y7voMrRO4R4UaAnQuKsI9V_XufrfAxoZY_1bTRDBddUl82QyFlRik6MCIwtsE52o2XM9Up9iEqdVqVaJXPICi6_L-iMy3lZr8Kwdpo0Opvg0YNlAvFCtNQ1U=36BBB91A`;
+        const url = `https://api.trello.com/1/cards?key=c70932b508c303c193d6c398dadca876&token=ATTA73a2516e27b1f01ee73a814f197eb8a7ab9d9aa4bb9d82a60bc63750d28c49f9AE89D8AA`;
         axios
             .post(url, cardData)
             .then((response) => {
@@ -52,7 +52,7 @@ END:VCALENDAR`;
     };
 
     const uploadICSFileToTrello = (cardId, icsFile) => {
-        const attachmentUrl = `https://api.trello.com/1/cards/${cardId}/attachments?key=ssa_token&token=ATATT3xFfGF09ZoTBtr7fj1yYlUmYIjj9E8iXnuOkzqrj3hyiuBILTUnhjZPBw5y7voMrRO4R4UaAnQuKsI9V_XufrfAxoZY_1bTRDBddUl82QyFlRik6MCIwtsE52o2XM9Up9iEqdVqVaJXPICi6_L-iMy3lZr8Kwdpo0Opvg0YNlAvFCtNQ1U=36BBB91A`;
+        const attachmentUrl = `https://api.trello.com/1/cards/P2st1jb5/attachments?key==c70932b508c303c193d6c398dadca876&token=ATTA73a2516e27b1f01ee73a814f197eb8a7ab9d9aa4bb9d82a60bc63750d28c49f9AE89D8AA`;
 
         const formData = new FormData();
         formData.append('file', icsFile, 'calendar_event.ics');
