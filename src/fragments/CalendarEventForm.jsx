@@ -124,18 +124,6 @@ END:VCALENDAR`;
             <button className="add-event-btn" type="submit" onClick={handleAddEvent}>
                 Add Event
             </button>
-            {eventTitle.trim() !== '' && eventDescription.trim() !== '' && (
-                <ICalendarLink
-                    event={{
-                        startTime: startDate,
-                        endTime: endDate,
-                        title: eventTitle,
-                        description: eventDescription,
-                    }}
-                >
-                    Add to Calendar
-                </ICalendarLink>
-            )}
         </Box>
     );
 };
