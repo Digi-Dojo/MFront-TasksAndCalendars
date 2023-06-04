@@ -11,7 +11,7 @@
     "check-format": "prettier --check .",
     "test": "cross-env BABEL_ENV=test jest",
     "watch-tests": "cross-env BABEL_ENV=test jest --watch",
-    "prepare": "husky install",
+    "prepare": "cd .. && husky install",
     "coverage": "cross-env BABEL_ENV=test jest --coverage"
   },
   "devDependencies": {
@@ -43,6 +43,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.11.16",
     "dayjs": "^1.11.7",
     "react": "^17.0.2",
     "react-calendar": "^4.2.1",
