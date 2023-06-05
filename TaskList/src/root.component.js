@@ -21,28 +21,10 @@ const TasksList = () => {
   };
 
   return (
-    <div>
-      <div className="task-create-form">
-        <TaskCreateForm
-          title=""
-          user=""
-          place=""
-          description=""
-          setTitle={() => {}}
-          setUser={() => {}}
-          setPlace={() => {}}
-          setDescription={() => {}}
-          onSubmit={handleTaskCreate}
-          buttonText="Create Task"
-        />
-        <br></br>
-        <br></br>
-      </div>
-      <div className="scrollMenu-Tasks">
-        {tasks.map((task) => (
-          task && <TaskFragment key={task.id} task={task} />
-        ))}
-      </div>
+    <div className="scrollMenu-Tasks">
+      {tasks.map((task) => (
+        task && <TaskFragment key={task.id} task={task} />
+      ))}
     </div>
   );
 };
