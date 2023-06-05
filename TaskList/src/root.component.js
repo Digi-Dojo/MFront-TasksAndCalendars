@@ -1,31 +1,44 @@
-import React from 'react';
-import TaskCreateForm from './fragments/TaskCreateForm';
-import TaskFragment from './fragments/TaskFragment';
-import useTasks from '../hooks/useTasks';
+import React, { useState } from 'react';
+import { Box } from '@mui/material';
+//ON RENDER
+const TasksList = ({ tasks }) => {
 
-const TasksList = () => {
-  const [tasks, setTasks] = useTasks();
+  const [completedTasks, setCompletedTasks] = useState([]);
 
-  const handleTaskCreate = (event) => {
-    event.preventDefault();
-
-    const newTask = {
-      id: tasks.length + 1,
-      title: event.target.title.value,
-      user: event.target.user.value,
-      place: event.target.place.value,
-      description: event.target.description.value,
-    };
-
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+  const toggleCompleted = (taskId) => {
+    if (completedTasks.includes(taskId)) {
+      setCompletedTasks(completedTasks.filter(task => task !== taskId));
+    } else {
+      setCompletedTasks([...completedTasks, taskId]);
+    }
   };
 
-  return (
-    <div className="scrollMenu-Tasks">
-      {tasks.map((task) => (
-        task && <TaskFragment key={task.id} task={task} />
-      ))}
+  const maxHeight = {
+    height: '75vh',
+    overflow: 'auto',
+  };
+
+  var taskList = <br></br>;
+  if(tasks.length > 0){
+    taskList = tasks.map((task, index) => (
+    <div key={index}>
+      <h3 style={{ textDecoration: completedTasks.includes(index) ? "line-through" : "" }}>{task.title}</h3>
+      <p>Description: {task.description}</p>
+      <p>{task.user === null ? '' : 'User: ' + task.user}</p>
+      <p>{task.place === null ? '' : 'Place: ' + task.place}</p>
+      <p>{task.tags === null ? '' : 'tags: ' + task.tags}</p>
+      <button onClick={() => toggleCompleted(index)}>{task.status === 'DONE' ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
+      <br></br><br></br>
     </div>
+  ))}
+
+  return (
+    <div>
+      <Box sx={maxHeight}>
+        <h2>Tasks</h2>
+        {taskList}
+      </Box>
+    </div >
   );
 };
 
