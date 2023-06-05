@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Box } from '@mui/material';
+import { TextField, Box } from '@mui/icons-material';
 
 const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
     const [eventTitle, setEventTitle] = useState('');
