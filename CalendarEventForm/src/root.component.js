@@ -1,26 +1,40 @@
 import React, { useState } from 'react';
 import { TextField, Box } from '@mui/material';
 
-const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
-    const [eventTitle, setEventTitle] = useState('');
-    const [eventDescription, setEventDescription] = useState('');
-    const [eventTag, setEventTag] = useState('');
+const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
+
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        startDate: startDate,
+        endDate: endDate,
+        user: '',
+        place: '',
+        tags: '',
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+        console.log('Changing value of ' + name + ' to ' + value)
+    }
 
     const addEvent = () => {
-        if (eventTitle.trim() !== '' && eventDescription.trim() !== '') {
-            setCalendarEvents((prevEvents) => [
-                ...prevEvents,
-                {
-                    title: eventTitle,
-                    description: eventDescription,
-                    startDate: startDate,
-                    endDate: endDate,
-                    tag: eventTag,
-                },
-            ]);
-            setEventTitle('');
-            setEventDescription('');
-            setEventTag('');
+        if (formData.title.trim() !== '' && formData.description.trim() !== '') {
+            if(formData.place === "") formData.place = null;
+            if(formData.user === "") formData.user = null;
+            if(formData.tags === "") formData.tags = null;
+            setCalendarEvent(formData);
+
+            setFormData({
+                title: '',
+                description: '',
+                startDate: startDate,
+                endDate: endDate,
+                user: '',
+                place: '',
+                tags: '',
+            });
         }
     };
 
@@ -36,24 +50,47 @@ const CalendarEventForm = ({ setCalendarEvents, startDate, endDate }) => {
             }}
         >
             <TextField
+                name="title"
                 label="Event Title"
-                value={eventTitle}
-                onChange={(e) => setEventTitle(e.target.value)}
+                value={formData.title}
+                onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
             />
             <TextField
+                name="description"
                 label="Event Description"
-                value={eventDescription}
-                onChange={(e) => setEventDescription(e.target.value)}
-                sx={{ marginRight: '10px'}}
-            />
-            <TextField
-                label="Event Tag"
-                value={eventTag}
-                onChange={(e) => setEventTag(e.target.value)}
+                value={formData.description}
+                onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
             />
-            <button className="add-event-btn" type="submit" onClick={addEvent}> Add Event </button>
+            <TextField
+                name="user"
+                label="Event user"
+                value={formData.user}
+                onChange={handleInputChange}
+                sx={{ marginRight: '10px' }}
+            />
+            <br></br>
+            <TextField
+                name="place"
+                label="Event place"
+                value={formData.place}
+                onChange={handleInputChange}
+                sx={{ marginRight: '10px' }}
+            />
+            <TextField
+                name="tags"
+                label="Event Tag"
+                value={formData.tags}
+                onChange={handleInputChange}
+                sx={{ marginRight: '10px' }}
+            />
+            <button 
+                className="add-event-btn" 
+                type="button" 
+                onClick={addEvent}> 
+                Add Event 
+            </button>
         </Box>
     );
 };

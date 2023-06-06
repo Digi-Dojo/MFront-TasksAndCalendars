@@ -19,6 +19,8 @@ const CalendarEventList = ({calendarEvents}) => {
         <p>Start Date: {dayjs(event.startDate).format('MMMM D, YYYY')}</p>
         <p>End Date: {dayjs(event.endDate).format('MMMM D, YYYY')}</p>
         <p>{event.tag === undefined ? '' : 'Tag: ' + event.tag}</p>
+        <p>{event.user === null ? '' : 'User: ' + event.user}</p>
+        <p>{event.place === null ? '' : 'Place: ' + event.place}</p>
         <br></br><br></br>
       </div>
   ))}
