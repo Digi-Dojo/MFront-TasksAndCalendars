@@ -17,12 +17,6 @@ const TaskCreateForm = ({ setTasks }) => {
         setFormData(prevState => ({ ...prevState, [name]: value }))
     }
 
-    /*
-    START FROM HERE!!!
-    https://developer.okta.com/blog/2022/06/17/simple-crud-react-and-spring-boot
-
-    This class needs to call the backend to submit new events
-    */
     const addTask = () => {
         if (formData.title.trim() !== '' && formData.description.trim() !== '') {
             setTasks(formData);

@@ -1,27 +1,55 @@
 import { useState, useEffect } from 'react';
+import { client as axios } from '../utils/axios'
 
 const useCalendarEvents = () => {
   const [calendarEvents, setCalendarEvents] = useState([]);
+  const [error, setError] = useState(null);
 
-  const fetchCalendarEvents = async () => {
+  async function post({ description, startDate, endDate, place, user, tags, title }) {
     try {
-      const response = await fetch("http://localhost:8080/api/calendar-events/getAll");
-      const fetchedCalendarEvents = await response.json();
+      const response = await axios.post('api/calendar-events/create', {
+        description: description,
+        startDate: startDate,
+        endDate: endDate,
+        place: place,
+        user: user,
+        tags: tags,
+        title: title
+      });
 
-      console.log("Events: " + JSON.stringify(fetchedCalendarEvents));
-      
-      setCalendarEvents(fetchedCalendarEvents);
-
-    } catch (error) {
-      console.error('Error fetching calendar events:', error);
+      // Refresh calendar events after successful post
+      getCalendarEvents();
+      return response.data;
+    } catch (err) {
+      // Handle error
+      console.error(err);
+      setError(err);
     }
-  };
+  }
 
-  useEffect(() => {
-    fetchCalendarEvents();
-  }, []);
+  function setCalendarEvent(calendarEvent) {
+    return post(calendarEvent);
+  }
 
-  return [calendarEvents, setCalendarEvents];
+  async function get() {
+    try {
+      const { data } = await axios.get('/api/calendar-events/getAll');
+      setCalendarEvents(data);
+    } catch (err) {
+      // Handle error
+      console.error(err);
+      setError(err);
+    }
+  }
+
+  function getCalendarEvents() {
+    get();
+  }
+
+  useEffect(getCalendarEvents, []);
+
+  // Return error as well to be used in component
+  return [calendarEvents, setCalendarEvent, error];
 };
 
 export default useCalendarEvents;

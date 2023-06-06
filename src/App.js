@@ -11,25 +11,27 @@ import TaskCreateForm from './fragments/TaskCreateForm';
 import CalendarEventForm from './fragments/CalendarEventForm';
 
 function App() {
-  const [calendarEvents, setCalendarEvents] = useCalendarEvents();
-  const [tasks, setTaskList] = useTasks();
+  const [calendarEvents, setCalendarEvent, calendarEventsError] = useCalendarEvents();
+  const [tasks, setTask, taskError] = useTasks();
   const [selectedStartDate, setSelectedStartDate] = useState(dayjs().toDate());
   const [selectedEndDate, setSelectedEndDate] = useState(dayjs().toDate());
 
   return (
     <div className="App">
+      {calendarEventsError && <div>Error: {calendarEventsError.message}</div>}
+      {taskError && <div>Error: {taskError.message}</div>}
       <Title primary>My Calendar & Task App</Title>
       <div className="container">
         <div className="calendar">
           <Title secondary>Calendar</Title>
           <Calendar calendarEvents={calendarEvents} setSelectedStartDate={setSelectedStartDate} setSelectedEndDate={setSelectedEndDate} />
-          <CalendarEventForm setCalendarEvents={setCalendarEvents} startDate={selectedStartDate} endDate={selectedEndDate} />
+          <CalendarEventForm setCalendarEvent={setCalendarEvent} startDate={selectedStartDate} endDate={selectedEndDate} />
           <CalendarEventList calendarEvents={calendarEvents} />
         </div>
         <div className="tasks">
           <Title secondary>Tasks</Title>
-          <TaskCreateForm setTasks={setTaskList} />
-          <TasksList tasks={tasks} setTasks={setTaskList} />
+          <TaskCreateForm setTasks={setTask} />
+          <TasksList tasks={tasks} />
         </div>
       </div>
     </div>
