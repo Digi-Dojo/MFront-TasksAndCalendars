@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Box } from '@mui/material';
-import { client as axios } from '../utils/axios'
+import axios from '../utils/axios'
 
 const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
 
