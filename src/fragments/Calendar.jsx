@@ -5,17 +5,19 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 export const CalendarFragment = ({ setSelectedStartDate, setSelectedEndDate }) => {
-    const [selectedStartDate, setSelectedStartDateLocal] = useState(dayjs().toDate());
-    const [selectedEndDate, setSelectedEndDateLocal] = useState(dayjs().toDate());
+    const [selectedStartDate, setSelectedStartDateLocal] = useState();
+    const [selectedEndDate, setSelectedEndDateLocal] = useState();
 
     const handleStartDateChange = (date) => {
-        setSelectedStartDateLocal(date);
-        setSelectedStartDate(date);
+        const startOfDate = dayjs(date).startOf('day').toDate();
+        setSelectedStartDateLocal(startOfDate);
+        setSelectedStartDate(startOfDate);
     };
 
     const handleEndDateChange = (date) => {
-        setSelectedEndDateLocal(date);
-        setSelectedEndDate(date);
+        const startOfDate = dayjs(date).endOf('day').toDate();
+        setSelectedEndDateLocal(startOfDate);
+        setSelectedEndDate(startOfDate);
     };
 
     return (

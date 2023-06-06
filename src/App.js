@@ -12,13 +12,14 @@ import CalendarEventForm from './fragments/CalendarEventForm';
 
 function App() {
   const [calendarEvents, setCalendarEvent, calendarEventsError] = useCalendarEvents();
-  const [tasks, setTaskList] = useTasks();
+  const [tasks, setTask, taskError] = useTasks();
   const [selectedStartDate, setSelectedStartDate] = useState(dayjs().toDate());
   const [selectedEndDate, setSelectedEndDate] = useState(dayjs().toDate());
 
   return (
     <div className="App">
       {calendarEventsError && <div>Error: {calendarEventsError.message}</div>}
+      {taskError && <div>Error: {taskError.message}</div>}
       <Title primary>My Calendar & Task App</Title>
       <div className="container">
         <div className="calendar">
@@ -29,7 +30,7 @@ function App() {
         </div>
         <div className="tasks">
           <Title secondary>Tasks</Title>
-          <TaskCreateForm setTasks={setTaskList} />
+          <TaskCreateForm setTasks={setTask} />
           <TasksList tasks={tasks} />
         </div>
       </div>

@@ -23,8 +23,15 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
             if(formData.place === "") formData.place = null;
             if(formData.user === "") formData.user = null;
             if(formData.tags === "") formData.tags = null;
-            setCalendarEvent(formData);
 
+            const newEvent = { 
+                ...formData, 
+                startDate: startDate,
+                endDate: endDate
+            };
+    
+            setCalendarEvent(newEvent);
+                
             setFormData({
                 title: '',
                 description: '',
