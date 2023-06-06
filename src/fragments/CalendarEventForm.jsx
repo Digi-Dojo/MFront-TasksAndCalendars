@@ -8,7 +8,9 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
         description: '',
         startDate: startDate,
         endDate: endDate,
-        tag: '',
+        user: '',
+        place: '',
+        tags: '',
     });
 
     const handleInputChange = (e) => {
@@ -18,6 +20,9 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
 
     const addEvent = () => {
         if (formData.title.trim() !== '' && formData.description.trim() !== '') {
+            if(formData.place === "") formData.place = null;
+            if(formData.user === "") formData.user = null;
+            if(formData.tags === "") formData.tags = null;
             setCalendarEvent(formData);
 
             setFormData({
@@ -25,7 +30,9 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
                 description: '',
                 startDate: startDate,
                 endDate: endDate,
-                tag: '',
+                user: '',
+                place: '',
+                tags: '',
             });
         }
     };
@@ -56,13 +63,33 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
                 sx={{ marginRight: '10px' }}
             />
             <TextField
-                name="tag"
-                label="Event Tag"
-                value={formData.tag}
+                name="user"
+                label="Event user"
+                value={formData.user}
                 onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
             />
-            <button className="add-event-btn" type="submit" onClick={addEvent}> Add Event </button>
+            <br></br>
+            <TextField
+                name="place"
+                label="Event place"
+                value={formData.place}
+                onChange={handleInputChange}
+                sx={{ marginRight: '10px' }}
+            />
+            <TextField
+                name="tags"
+                label="Event Tag"
+                value={formData.tags}
+                onChange={handleInputChange}
+                sx={{ marginRight: '10px' }}
+            />
+            <button 
+                className="add-event-btn" 
+                type="button" 
+                onClick={addEvent}> 
+                Add Event 
+            </button>
         </Box>
     );
 };

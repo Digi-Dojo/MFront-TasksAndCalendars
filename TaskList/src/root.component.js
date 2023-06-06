@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-//ON RENDER
+
 const TasksList = ({ tasks }) => {
 
   const [completedTasks, setCompletedTasks] = useState([]);
