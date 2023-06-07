@@ -1,18 +1,52 @@
-import React, { useState } from 'react';
+// imported useEffect, see explaination below where we used it. ( line 45)
+
+import React, { useState, useEffect } from 'react';
 import { TextField, Box } from '@mui/material';
-import { client as axios } from '../utils/axios'
+import axios from "axios";
+
 
 const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
+
+    const syncEventWithTrello = (event) => {
+        const cardData = {
+            name: event.title,
+            desc: event.description,
+            due: new Date(event.endDate).toISOString(),
+            idList: '6475e6c01fd186e2509f7f22', // Replace with the appropriate Trello list ID
+        };
+
+        // commented code, decomment if u want to add also events on trello
+
+        const url = `https://api.trello.com/1/cards?key=c70932b508c303c193d6c398dadca876&token=ATTA73a2516e27b1f01ee73a814f197eb8a7ab9d9aa4bb9d82a60bc63750d28c49f9AE89D8AA`;
+        axios
+            .post(url, cardData)
+            .catch((error) => {
+                // Handle errors
+                console.error('Error creating card:', error);
+            });
+    };
 
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         startDate: startDate,
         endDate: endDate,
-        user: '',
-        place: '',
-        tags: '',
+        tag: '',
     });
+
+
+    // added useEffect otherwise only one event was created with the right date, and the other not.
+
+    useEffect(() => {
+        const adjustedStartDate = new Date(startDate);
+        adjustedStartDate.setDate(startDate.getDate() + 1);
+
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            startDate: adjustedStartDate,
+            endDate: endDate,
+        }));
+    }, [startDate, endDate]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -21,96 +55,17 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
 
     const addEvent = () => {
         if (formData.title.trim() !== '' && formData.description.trim() !== '') {
-            if (formData.place === "") formData.place = null;
-            if (formData.user === "") formData.user = null;
-            if (formData.tags === "") formData.tags = null;
-
-            const newEvent = {
-                ...formData,
-                startDate: startDate,
-                endDate: endDate
-            };
-
-            setCalendarEvent(newEvent);
-
+            setCalendarEvent(formData);
+            syncEventWithTrello(formData);
             setFormData({
                 title: '',
                 description: '',
-                startDate: startDate,
-                endDate: endDate,
-                user: '',
-                place: '',
-                tags: '',
+                startDate:startDate,
+                endDate:endDate,
+                tag: '',
             });
-
-            syncEventWithTrello(newEvent);
         }
     };
-
-    const syncEventWithTrello = (event) => {
-        console.log(event);
-        const cardData = {
-            name: event.title,
-            desc: event.description + '\nStartDate: ' + event.startDate,
-            due: event.endDate, // setting the due date
-            idList: '6475e6c01fd186e2509f7f22', // Replace with the appropriate Trello list ID
-        };
-
-        // old key  : c70932b508c303c193d6c398dadca876
-        // old token : see backend
-        // new key: ssa_token
-
-        const url = `https://api.trello.com/1/cards?key=c70932b508c303c193d6c398dadca876&token=ATTA73a2516e27b1f01ee73a814f197eb8a7ab9d9aa4bb9d82a60bc63750d28c49f9AE89D8AA`;
-        axios
-            .post(url, cardData)
-            .then((response) => {
-                const cardId = response.data.id;
-
-                const icsFile = generateICSFile(event);
-                uploadICSFileToTrello(cardId, icsFile);
-            })
-            .catch((error) => {
-                console.error('Error creating card:', error);
-            });
-    };
-
-    const generateICSFile = (event) => {
-        const icsContent = `BEGIN:VCALENDAR
-        VERSION:2.0
-        PRODID:-//Your Company//Your App//EN
-        BEGIN:VEVENT
-        UID:${Math.random().toString(36).substr(2, 9)}
-        DTSTAMP:${new Date().toISOString().replace(/[-:.]/g, '')}
-        DTSTART:${event.startTime.toISOString().replace(/[-:.]/g, '')}
-        DTEND:${event.endTime.toISOString().replace(/[-:.]/g, '')}
-        SUMMARY:${event.title}
-        DESCRIPTION:${event.description}
-        END:VEVENT
-        END:VCALENDAR`;
-
-        return new Blob([icsContent], { type: 'text/calendar' });
-    };
-
-    const uploadICSFileToTrello = (cardId, icsFile) => {
-        const attachmentUrl = `https://api.trello.com/1/cards/P2st1jb5/attachments?key==c70932b508c303c193d6c398dadca876&token=ATTA73a2516e27b1f01ee73a814f197eb8a7ab9d9aa4bb9d82a60bc63750d28c49f9AE89D8AA`;
-
-        const formData = new FormData();
-        formData.append('file', icsFile, 'calendar_event.ics');
-
-        axios
-            .post(attachmentUrl, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            })
-            .then((response) => {
-                console.log('Attachment uploaded:', response.data);
-            })
-            .catch((error) => {
-                console.error('Error uploading attachment:', error);
-            });
-    };
-
 
     return (
         <Box
@@ -138,33 +93,14 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
                 sx={{ marginRight: '10px' }}
             />
             <TextField
-                name="user"
-                label="Event user"
-                value={formData.user}
-                onChange={handleInputChange}
-                sx={{ marginRight: '10px' }}
-            />
-            <br></br>
-            <TextField
-                name="place"
-                label="Event place"
-                value={formData.place}
-                onChange={handleInputChange}
-                sx={{ marginRight: '10px' }}
-            />
-            <TextField
-                name="tags"
+                name="tag"
                 label="Event Tag"
-                value={formData.tags}
+                value={formData.tag}
                 onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
             />
-            <button
-                className="add-event-btn"
-                type="button"
-                onClick={addEvent}>
-                Add Event
-            </button>
+
+            <button className="add-event-btn" type="submit" onClick={addEvent}> Add Event </button>
         </Box>
     );
 };
