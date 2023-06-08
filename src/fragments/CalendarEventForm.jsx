@@ -92,6 +92,21 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
                 onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
             />
+             <TextField
+                name="user"
+                label="Event user"
+                value={formData.user}
+                onChange={handleInputChange}
+                sx={{ marginRight: '10px' }}
+            />
+            <br></br>
+            <TextField
+                name="place"
+                label="Event place"
+                value={formData.place}
+                onChange={handleInputChange}
+                sx={{ marginRight: '10px' }}
+            />
             <TextField
                 name="tag"
                 label="Event Tag"
