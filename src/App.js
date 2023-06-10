@@ -12,29 +12,29 @@ import CalendarEventForm from './fragments/CalendarEventForm';
 
 function App() {
   const [calendarEvents, setCalendarEvent, calendarEventsError] = useCalendarEvents();
-  const [tasks, setTask, taskError] = useTasks();
+  const [tasks, setTask, setStatus , taskError] = useTasks();
   const [selectedStartDate, setSelectedStartDate] = useState(dayjs().toDate());
   const [selectedEndDate, setSelectedEndDate] = useState(dayjs().toDate());
 
   return (
-    <div className="App">
-      {calendarEventsError && <div>Error: {calendarEventsError.message}</div>}
-      {taskError && <div>Error: {taskError.message}</div>}
-      <Title primary>My Calendar & Task App</Title>
-      <div className="container">
-        <div className="calendar">
-          <Title secondary>Calendar</Title>
-          <Calendar calendarEvents={calendarEvents} setSelectedStartDate={setSelectedStartDate} setSelectedEndDate={setSelectedEndDate} />
-          <CalendarEventForm setCalendarEvent={setCalendarEvent} startDate={selectedStartDate} endDate={selectedEndDate} />
-          <CalendarEventList calendarEvents={calendarEvents} />
-        </div>
-        <div className="tasks">
-          <Title secondary>Tasks</Title>
-          <TaskCreateForm setTasks={setTask} />
-          <TasksList tasks={tasks} />
+      <div className="App">
+        {calendarEventsError && <div>Error: {calendarEventsError.message}</div>}
+        {taskError && <div>Error: {taskError.message}</div>}
+        <Title primary>My Calendar & Task App</Title>
+        <div className="container">
+          <div className="calendar">
+            <Title secondary>Calendar</Title>
+            <Calendar calendarEvents={calendarEvents} setSelectedStartDate={setSelectedStartDate} setSelectedEndDate={setSelectedEndDate} />
+            <CalendarEventForm setCalendarEvent={setCalendarEvent} startDate={selectedStartDate} endDate={selectedEndDate} />
+            <CalendarEventList calendarEvents={calendarEvents} />
+          </div>
+          <div className="tasks">
+            <Title secondary>Tasks</Title>
+            <TaskCreateForm setTasks={setTask} />
+            <TasksList tasks={tasks} setStatus={setStatus}/>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
 
