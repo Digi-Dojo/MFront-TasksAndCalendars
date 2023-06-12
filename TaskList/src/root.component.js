@@ -32,6 +32,17 @@ const TasksList = ({ tasks }) => {
     </div>
   ))}
 
+  taskList = ({ task, index, toggleCompleted }) => (
+    <div>
+      <h3 >DUMMY TASK</h3>
+      <p>Description: I'm not real</p>
+      <p>User: Batman</p>
+      <p>Place: Batcave</p>
+      <p>Tags: BatStuff</p>
+      <button onClick={() => toggleCompleted(index)}>{task.status === 'DONE' ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
+    </div>
+  );
+
   return (
     <div>
       <Box sx={maxHeight}>
