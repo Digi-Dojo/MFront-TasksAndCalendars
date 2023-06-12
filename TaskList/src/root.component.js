@@ -26,20 +26,20 @@ const TasksList = ({ tasks }) => {
       <p>Description: {task.description}</p>
       <p>{task.user === null ? '' : 'User: ' + task.user}</p>
       <p>{task.place === null ? '' : 'Place: ' + task.place}</p>
-      <p>{task.tags === null ? '' : 'tags: ' + task.tags}</p>
+      <p>{task.tags === null ? '' : 'Tags: ' + task.tags}</p>
       <button onClick={() => toggleCompleted(index)}>{task.status === 'DONE' ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
       <br></br><br></br>
     </div>
   ))}
 
-  taskList = ({ task, index, toggleCompleted }) => (
+  const dummyTask = (
     <div>
       <h3 >DUMMY TASK</h3>
       <p>Description: I'm not real</p>
       <p>User: Batman</p>
       <p>Place: Batcave</p>
       <p>Tags: BatStuff</p>
-      <button onClick={() => toggleCompleted(index)}>{task.status === 'DONE' ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
+      <button onClick={() => toggleCompleted(0)}>Mark as Complete</button>
     </div>
   );
 
@@ -47,6 +47,7 @@ const TasksList = ({ tasks }) => {
     <div>
       <Box sx={maxHeight}>
         <h2>Tasks</h2>
+        {dummyTask}
         {taskList}
       </Box>
     </div >
