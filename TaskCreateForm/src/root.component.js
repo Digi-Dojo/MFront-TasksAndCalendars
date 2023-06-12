@@ -51,23 +51,23 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.title}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '15px' }}
-                style={{ color: 'blue' }}
-            />
+                inputProps={{ style: { color: 'black' } }}
+                />
             <TextField
                 name="user"
                 label="Task user"
                 value={formData.user}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
-                style={{ color: 'blue' }}
-             />
+                inputProps={{ style: { color: 'black' } }}
+                />
             <TextField
                 name="place"
                 label="Task place"
                 value={formData.place}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
-                style={{ color: 'blue' }}            
+                inputProps={{ style: { color: 'black' } }}
                 />
             <TextField
                 name="description"
@@ -75,16 +75,16 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.description}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
-                style={{ color: 'blue' }}
-            />
+                inputProps={{ style: { color: 'black' } }}
+                />
             <TextField
                 name="tags"
                 label="Task tags"
                 value={formData.tags}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
-                style={{ color: 'blue' }}
-            />
+                inputProps={{ style: { color: 'black' } }}
+                />
             <button
                 className="add-event-btn"
                 type="button"   // change type here to 'button'
