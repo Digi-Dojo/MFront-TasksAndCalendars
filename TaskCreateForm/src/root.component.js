@@ -51,7 +51,7 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.title}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '15px' }}
-                style="color: blue;"
+                style={{ color: 'blue' }}
             />
             <TextField
                 name="user"
@@ -59,23 +59,23 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.user}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
-                style="color: blue;"
-            />
+                style={{ color: 'blue' }}
+             />
             <TextField
                 name="place"
                 label="Task place"
                 value={formData.place}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
-                style="color: blue;"
-            />
+                style={{ color: 'blue' }}            
+                />
             <TextField
                 name="description"
                 label="Task description"
                 value={formData.description}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
-                style="color: blue;"
+                style={{ color: 'blue' }}
             />
             <TextField
                 name="tags"
@@ -83,7 +83,7 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.tags}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
-                style="color: blue;"
+                style={{ color: 'blue' }}
             />
             <button
                 className="add-event-btn"
