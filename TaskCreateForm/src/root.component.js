@@ -38,11 +38,11 @@ const TaskCreateForm = ({ setTasks }) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                '& .MuiInputBase-input': { color: '#ffffff' },
-                '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '& .MuiInputLabel-outlined': { color: '#0000FF' },
+                '& .MuiInputBase-input': { color: '#FFFFFF' },
+                '& .MuiOutlinedInput-notchedOutline': { borderColor: '#00000' },
+                '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#000000' },
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#000000' },
+                '& .MuiInputLabel-outlined': { color: '#000000' },
             }}
         >
             <TextField
