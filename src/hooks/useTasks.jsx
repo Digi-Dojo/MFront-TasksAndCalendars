@@ -1,73 +1,42 @@
 import { useState, useEffect } from 'react';
-import {client as axios} from '../utils/axios'
 
 export const useTasks = () => {
-    const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
-    async function post({description, place, user, status, title}) {
-        return axios.post('api/tasks/create', {
-            description: description,
-            user: user,
-            place: place,
-            status: status,
-            title: title
-        })
-            .then(message =>{
-                getTasks();
-                return message
-            } )
-    }
-    async function updateStatus({ taskId, description, place, user, status, tags }) {
-        //Needed a param constant, for the given parameters (taskId, description, etc.) to be query parameters
-        const params = {
-            description: description ? description : null,
-            user: user ? user : null,
-            place: place ? place : null,
-            tags: tags ? tags : null,
-            status: status ? status : null
-        };
+  useEffect(() => {
+    // Creating a dummy task
+    const dummyTask = [
+      {
+        title: "DUMMY TASK",
+        description: "I'm not real",
+        user: "Batman",
+        place: "Batcave",
+        tags: "BatStuff",
+        status: 'TO DO' 
+      }
+    ];
 
-        return axios.post(`api/tasks/update/${taskId}`, null, { params })
-            .then(response => {
-                getTasks();
-                return response;
-            });
-    }
+    // Setting the dummy task in the state
+    setTasks(dummyTask);
+  }, []);
 
-    function setStatus(task) {
-        return updateStatus(task);
-    }
+  const post = async ({description, place, user, status, title}) => {
+    // Implement your post logic here when backend is working
+  };
 
-    function setTask(task){
-        return post(task);
-    }
+  const updateStatus = async ({ taskId, description, place, user, status, tags }) => {
+    // Implement your update logic here when backend is working
+  };
 
-    async function get() {
-        const { data } = await axios.get('api/tasks/getAll');
-        setTasks(data);
-    }
+  const setStatus = (task) => {
+    // Implement your setStatus logic here when backend is working
+  };
 
-    function getTasks() {
-        get();
-    }
+  const setTask = (task) => {
+    // Implement your setTask logic here when backend is working
+  };
 
-    // const fetchTasks = async () => {
-    //   try {
-    //     const response = await fetch('http://localhost:8080/api/tasks/getAll');
-    //     const fetchedTasks = response.json();
-
-    //     console.log("Tasks: " + JSON.stringify(fetchedTasks));
-
-    //     setTasks(fetchedTasks);
-
-    //   } catch (error) {
-    //     console.error('Error fetching tasks:', error);
-    //   }
-    // };
-
-    useEffect(getTasks, []);
-
-    return [tasks, setTask, setStatus];
+  return [tasks, setTask, setStatus];
 };
 
-export default useTasks;  
+export default useTasks;

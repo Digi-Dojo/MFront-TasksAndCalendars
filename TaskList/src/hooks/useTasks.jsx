@@ -5,9 +5,19 @@ export const useTasks = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8080/api/tasks'); 
-      const fetchedTasks = await response.json();
-
+      // Creating a dummy task
+      const fetchedTasks = [
+        {
+          title: "DUMMY TASK",
+          description: "I'm not real",
+          user: "Batman",
+          place: "Batcave",
+          tags: "BatStuff",
+          status: 'TO DO' 
+        }
+      ];
+      
+      // Setting the dummy task in the state
       setTasks(fetchedTasks);
     } catch (error) {
       console.error('Error fetching tasks:', error);
