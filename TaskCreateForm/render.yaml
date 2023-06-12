@@ -1,0 +1,5 @@
+services:
+  - name: sddl-task-create-form
+    headers:
+      - key: Access-Control-Allow-Origin
+        value: "*"
