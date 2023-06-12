@@ -42,7 +42,7 @@ const TaskCreateForm = ({ setTasks }) => {
                 '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
                 '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
                 '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '& .MuiInputLabel-outlined': { color: '#000000' },
+                '& .MuiInputLabel-outlined': { color: '#0000FF' },
             }}
         >
             <TextField
@@ -51,6 +51,7 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.title}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '15px' }}
+                style="color: blue;"
             />
             <TextField
                 name="user"
@@ -58,6 +59,7 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.user}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
+                style="color: blue;"
             />
             <TextField
                 name="place"
@@ -65,6 +67,7 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.place}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
+                style="color: blue;"
             />
             <TextField
                 name="description"
@@ -72,6 +75,7 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.description}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
+                style="color: blue;"
             />
             <TextField
                 name="tags"
@@ -79,6 +83,7 @@ const TaskCreateForm = ({ setTasks }) => {
                 value={formData.tags}
                 onChange={handleInputChange}
                 sx={{ marginBottom: '10px' }}
+                style="color: blue;"
             />
             <button
                 className="add-event-btn"
