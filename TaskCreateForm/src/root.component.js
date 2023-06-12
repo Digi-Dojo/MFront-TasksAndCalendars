@@ -42,7 +42,7 @@ const TaskCreateForm = ({ setTasks }) => {
                 '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
                 '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
                 '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '& .MuiInputLabel-outlined': { color: '#ffffff' },
+                '& .MuiInputLabel-outlined': { color: '#000000' },
             }}
         >
             <TextField
