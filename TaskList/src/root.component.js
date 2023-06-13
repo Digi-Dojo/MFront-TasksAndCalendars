@@ -2,6 +2,17 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
 const TasksList = ({ tasks }) => {
+  // Dummy task
+  const dummyTask = {
+    title: 'DUMMY TASK',
+    description: "I'm not real",
+    user: 'Batman',
+    place: 'Batcave',
+    tags: 'BatStuff',
+    status: 'INCOMPLETE'
+  };
+
+  tasks = [dummyTask, ...tasks]; // prepend the dummy task to the tasks list
 
   const [completedTasks, setCompletedTasks] = useState([]);
 
