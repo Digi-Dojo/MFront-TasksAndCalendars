@@ -9,7 +9,7 @@ const TasksList = ({ tasks }) => {
     user: 'Batman',
     place: 'Batcave',
     tags: 'BatStuff',
-    status: 'INCOMPLETE'
+    status: 1
   };
 
   tasks = [dummyTask, ...tasks]; // prepend the dummy task to the tasks list
@@ -38,6 +38,7 @@ const TasksList = ({ tasks }) => {
       <p>{task.user === null ? '' : 'User: ' + task.user}</p>
       <p>{task.place === null ? '' : 'Place: ' + task.place}</p>
       <p>{task.tags === null ? '' : 'tags: ' + task.tags}</p>
+      <div class="col-12 h-5 w-20 blue"></div>
       <button onClick={() => toggleCompleted(index)}>{task.status === 'DONE' ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
       <br></br><br></br>
     </div>
