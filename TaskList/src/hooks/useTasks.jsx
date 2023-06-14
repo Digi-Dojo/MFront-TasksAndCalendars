@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react';
 
 export const useTasks = () => {
-  const [tasks, setTasks] = useState([]);
+  const dummyTask = {
+    id: 'dummy-task',
+    title: 'dummy task',
+    description: "I'm not real",
+    user: 'Batman',
+    place: 'Batcave',
+    tags: 'BatStuff',
+    status: 'PENDING'
+  };
+
+  const [tasks, setTasks] = useState([dummyTask]);
 
   const fetchTasks = async () => {
     try {
       const response = await fetch('http://127.0.0.1:8080/api/tasks'); 
       const fetchedTasks = await response.json();
-
-      const dummyTask = {
-        title: 'DUMMY TASK',
-        description: "I'm not real",
-        user: 'Batman',
-        place: 'Batcave',
-        tags: 'BatStuff',
-        status: 'INCOMPLETE'
-      };
-
-      setTasks([...fetchedTasks, dummyTask]);
+      setTasks(prevTasks => [...prevTasks, ...fetchedTasks]);
     } catch (error) {
       console.error('Error fetching tasks:', error);
     }

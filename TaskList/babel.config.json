@@ -6,14 +6,14 @@
       {
         "runtime": "automatic"
       }
-    ],
+    ]
   ],
   "plugins": [
     [
       "@babel/plugin-transform-runtime",
       {
         "useESModules": true,
-        "regenerator": false
+        "regenerator": true
       }
     ]
   ],
