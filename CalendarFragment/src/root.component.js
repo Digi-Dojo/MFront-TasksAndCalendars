@@ -30,8 +30,8 @@ export const CalendarFragment = ({ setSelectedStartDate, setSelectedEndDate }) =
                     justifyContent: 'center',
                     '& .react-calendar__navigation button': {
                         color: '#ffffff',
-                        background: 'none',
-                        border: '1px solid #ffffff',
+                        background: '#bababa',
+                        border: '1px solid #000000',
                     },
                     '& .react-calendar__tile--active': {
                         color: '#ffffff',

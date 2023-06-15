@@ -117,10 +117,10 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
             component="div"
             sx={{
                 '& .MuiInputBase-input': { color: '#ffffff' },
-                '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' },
-                '& .MuiInputLabel-outlined': { color: '#ffffff' },
+                '& .MuiOutlinedInput-notchedOutline': { borderColor: '#000000' },
+                '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#000000' },
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#000000' },
+                '& .MuiInputLabel-outlined': { color: '#000000' },
             }}
         >
             <TextField
@@ -129,6 +129,7 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
                 value={formData.title}
                 onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
+                inputProps={{ style: { color: 'black' } }}
             />
             <TextField
                 name="description"
@@ -136,6 +137,7 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
                 value={formData.description}
                 onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
+                inputProps={{ style: { color: 'black' } }}
             />
             <TextField
                 name="user"
@@ -143,6 +145,7 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
                 value={formData.user}
                 onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
+                inputProps={{ style: { color: 'black' } }}
             />
             <br></br>
             <TextField
@@ -151,6 +154,7 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
                 value={formData.place}
                 onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
+                inputProps={{ style: { color: 'black' } }}
             />
             <TextField
                 name="tags"
@@ -158,6 +162,7 @@ const CalendarEventForm = ({ setCalendarEvent, startDate, endDate }) => {
                 value={formData.tags}
                 onChange={handleInputChange}
                 sx={{ marginRight: '10px' }}
+                inputProps={{ style: { color: 'black' } }}
             />
             <button
                 className="add-event-btn"
