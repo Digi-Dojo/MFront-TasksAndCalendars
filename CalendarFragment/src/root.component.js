@@ -30,7 +30,7 @@ export const CalendarFragment = ({ setSelectedStartDate, setSelectedEndDate }) =
                     justifyContent: 'center',
                     '& .react-calendar__navigation button': {
                         color: '#ffffff',
-                        background: '#bababa',
+                        background: '#ffffff',
                         border: '1px solid #000000',
                     },
                     '& .react-calendar__tile--active': {
@@ -62,7 +62,7 @@ export const CalendarFragment = ({ setSelectedStartDate, setSelectedEndDate }) =
                         lineHeight: '1.5px',
                         '&:not(.react-calendar__month-view__days__day--neighboringMonth)': {
                             '&:not(.react-calendar__month-view__days__day--weekend)': {
-                                color: '#ffffff'
+                                color: '#bababa'
                             },
                         },
                         '&:hover': {
