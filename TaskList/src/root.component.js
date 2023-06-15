@@ -45,14 +45,16 @@ const TasksList = () => {
     }
 
     var taskList = tasks.map((task, index) => (
+        //The list is not centered, it needs to be.
         <div key={index}>
-            <h3 style={{ textDecoration: completedTasks.includes(task.id) ? 'line-through' : '', display: 'flex', alignItems: 'center' }}>                {task.title}
+            <h3 style={{ textDecoration: completedTasks.includes(task.id) ? 'line-through' : '' }}>
+                {task.title}
             </h3>
-            <p style="display: flex; align-items: center;">Description: {task.description}</p>
-            <p style="display: flex; align-items: center;">{task.user === null ? '' : 'User: ' + task.user}</p>
-            <p style="display: flex; align-items: center;">{task.place === null ? '' : 'Place: ' + task.place}</p>
-            <p style="display: flex; align-items: center;">{task.tags === null ? '' : 'tags: ' + task.tags}</p>
-            <button style="display: flex; align-items: center;" onClick={() => toggleCompleted(task, task.id)}>
+            <p>Description: {task.description}</p>
+            <p>{task.user === null ? '' : 'User: ' + task.user}</p>
+            <p>{task.place === null ? '' : 'Place: ' + task.place}</p>
+            <p>{task.tags === null ? '' : 'tags: ' + task.tags}</p>
+            <button onClick={() => toggleCompleted(task, task.id)}>
                 {task.status === 'DONE' ? 'Mark as Incomplete' : 'Mark as Complete'}
             </button>
             <br /><br />
