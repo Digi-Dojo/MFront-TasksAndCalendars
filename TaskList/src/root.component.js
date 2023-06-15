@@ -45,7 +45,7 @@ const TasksList = () => {
     }
 
     var taskList = tasks.map((task, index) => (
-        <div key={index}>
+        <div key={index} style="display: flex; align-items: center;">
             <h3 style={{ textDecoration: completedTasks.includes(task.id) ? 'line-through' : '' }}>
                 {task.title}
             </h3>
