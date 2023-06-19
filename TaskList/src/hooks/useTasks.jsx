@@ -17,7 +17,7 @@ export const useTasks = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8080/api/tasks'); 
+      const response = await fetch('http://127.0.0.1:8080/api/tasks/getAll'); 
       const fetchedTasks = await response.json();
 
       if (!Array.isArray(fetchedTasks)) {
