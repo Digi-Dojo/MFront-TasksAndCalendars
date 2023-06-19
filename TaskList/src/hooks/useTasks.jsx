@@ -19,7 +19,11 @@ export const useTasks = () => {
     try {
       const response = await fetch('http://127.0.0.1:8080/api/tasks'); 
       const fetchedTasks = await response.json();
-      
+
+      if (!Array.isArray(fetchedTasks)) {
+        throw new Error('Fetched tasks is not an array');
+      }
+
       console.log("TLSize: " + fetchedTasks.length);
 
       setTasks(prevTasks => [...prevTasks, ...fetchedTasks]);
@@ -27,7 +31,6 @@ export const useTasks = () => {
       console.error('Error fetching tasks:', error);
     }
   };
-
 
   useEffect(() => {
     fetchTasks();
