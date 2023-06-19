@@ -11,8 +11,6 @@ export const useTasks = () => {
     status: 'PENDING'
   };
 
-  console.log("Hey");
-
   const [tasks, setTasks] = useState([dummyTask]);
 
   const fetchTasks = async () => {
@@ -24,11 +22,9 @@ export const useTasks = () => {
         throw new Error('Fetched tasks is not an array');
       }
 
-      console.log("TLSize: " + fetchedTasks.length);
-
       setTasks(prevTasks => [...prevTasks, ...fetchedTasks]);
     } catch (error) {
-      console.error('Error fetching tasks:', error);
+      console.error('Error fetching tasks: ', error);
     }
   };
 
