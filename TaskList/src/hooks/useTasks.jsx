@@ -11,17 +11,23 @@ export const useTasks = () => {
     status: 'PENDING'
   };
 
+  console.log("Hey");
+
   const [tasks, setTasks] = useState([dummyTask]);
 
   const fetchTasks = async () => {
     try {
       const response = await fetch('http://127.0.0.1:8080/api/tasks'); 
       const fetchedTasks = await response.json();
+      
+      console.log("TLSize: " + fetchedTasks.length);
+
       setTasks(prevTasks => [...prevTasks, ...fetchedTasks]);
     } catch (error) {
       console.error('Error fetching tasks:', error);
     }
   };
+
 
   useEffect(() => {
     fetchTasks();
