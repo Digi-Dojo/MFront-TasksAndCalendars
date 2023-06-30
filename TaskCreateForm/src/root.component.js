@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Box, TextField } from "@mui/material";
+import useTasks from '../../TaskList/src/hooks/useTasks';
 
-const TaskCreateForm = ({ setTasks }) => {
-    
+const TaskCreateForm = ({}) => {
+    const [tasks, setTasks] = useTasks();
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
