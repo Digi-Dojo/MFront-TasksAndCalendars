@@ -22,7 +22,7 @@ const TaskCreateForm = ({}) => {
     const addTask = () => {
         if (formData.title.trim() !== '' && formData.description.trim() !== '') {
             setTasks(formData);
-
+            console.log(formData);
             setFormData({
                 title: '',
                 description: '',

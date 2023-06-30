@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export const useTasks = () => {
   const dummyTask = {
     id: 'dummy-task',
-    title: 'dummy task',
+    title: 'dummyyy task',
     description: "I'm not real",
     user: 'Batman',
     place: 'Batcave',
@@ -11,11 +11,13 @@ export const useTasks = () => {
     status: 'PENDING'
   };
 
-  const [tasks, setTasks] = useState([dummyTask]);
+  console.log("useTasks class");
+
+  const [tasks, setTasks] = useState([]);
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8080/api/tasks/getAll'); 
+      const response = await fetch('http://127.0.0.1:8100/api/tasks/getAll'); 
       const fetchedTasks = await response.json();
 
       if (!Array.isArray(fetchedTasks)) {
