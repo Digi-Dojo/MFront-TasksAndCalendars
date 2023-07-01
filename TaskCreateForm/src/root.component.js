@@ -3,7 +3,7 @@ import { Box, TextField } from "@mui/material";
 import useTasks from '../../TaskList/src/hooks/useTasks';
 
 const TaskCreateForm = ({}) => {
-    const [tasks, setTasks] = useTasks();
+    const [tasks, setTasks, createTask] = useTasks();
 
     const [formData, setFormData] = useState({
         title: '',
@@ -18,11 +18,15 @@ const TaskCreateForm = ({}) => {
         const {name, value} = e.target;
         setFormData(prevState => ({ ...prevState, [name]: value }))
     }
+      
 
     const addTask = () => {
         if (formData.title.trim() !== '' && formData.description.trim() !== '') {
-            setTasks(formData);
+            createTask(formData);
+
+            console.log("formData: ");
             console.log(formData);
+            
             setFormData({
                 title: '',
                 description: '',

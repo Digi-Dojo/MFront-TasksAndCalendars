@@ -11,8 +11,6 @@ export const useTasks = () => {
     status: 'PENDING'
   };
 
-  console.log("useTasks class");
-
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = async () => {
@@ -24,9 +22,45 @@ export const useTasks = () => {
         throw new Error('Fetched tasks is not an array');
       }
 
-      setTasks(prevTasks => [...prevTasks, ...fetchedTasks]);
+      // setTasks(prevTasks => [...prevTasks, ...fetchedTasks]);
+      setTasks(fetchedTasks);
+
     } catch (error) {
       console.error('Error fetching tasks: ', error);
+    }
+  };
+
+  const createTask = async (formData) => {
+
+    console.log("Creating: " + JSON.stringify(formData));
+
+    try {
+      // const response = await fetch('http://127.0.0.1:8100/api/tasks/create', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(formData),
+      // });
+
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      };
+
+      const response = await fetch('http://127.0.0.1:8100/api/tasks/create', requestOptions);
+
+      console.log("res: " + response.status);
+      const responseBody = await response.json();
+      console.log(responseBody);
+
+      if (response.ok) {
+        // Task creation successful, fetch updated tasks
+        fetchTasks();
+      } else {
+        throw new Error('Failed to create task');
+      }
+    } catch (error) {
+      console.error('Error creating task: ', error);
     }
   };
 
@@ -34,7 +68,7 @@ export const useTasks = () => {
     fetchTasks();
   }, []);
 
-  return [tasks, setTasks];
+  return [tasks, setTasks, createTask];
 };
 
 export default useTasks;
