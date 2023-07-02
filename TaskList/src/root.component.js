@@ -37,6 +37,18 @@ const TasksList = () => {
         setCompletedTasks(initialCompletedTasks);
     }, [tasks]);
 
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //       // Fetch tasks from the database
+    //       setTasks(useTasks());
+    //     }, 5000);
+    
+    //     // Clear the interval when the component unmounts
+    //     return () => {
+    //       clearInterval(intervalId);
+    //     };
+    //   }, []);
+
     if (!tasks) {
         return <p>Loading tasks...</p>;
     }
@@ -61,8 +73,15 @@ const TasksList = () => {
         </div>
     ));
 
+    const centeredStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+    };
+
     return (
-        <div>
+        <div class={centeredStyle}>
             <Box sx={maxHeight}>
                 <h2>Tasks List</h2>
                 {taskList}
